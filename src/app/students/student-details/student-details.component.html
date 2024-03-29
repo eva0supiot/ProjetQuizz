@@ -49,7 +49,7 @@
   @if (allMajors$ | async; as allMajors) {
   <div class="form-group">
     <label for="major">Major</label>
-    <select id="major" [(ngModel)]="majorSelectModel" name="majors" class="form-control" required>
+    <select id="major" [(ngModel)]="majorSelectModel" name="majors" class="form-control">
       <option [ngValue]="null" [disabled]="true">Sélectionner une filière</option>
       @for (major of allMajors; track major) {
       <option [ngValue]="major">{{ major.name }}</option>
