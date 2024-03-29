@@ -1,0 +1,32 @@
+@use "theme";
+
+:host {
+  display: flex;
+  flex-direction: column;
+  padding: 30px;
+
+  h1 {
+    display: flex;
+    color: theme.$common-purple;
+    font-size: xx-large;
+    margin-left: 580px;
+    margin-right: 50px;
+    margin-bottom: 60px;
+    align-items: center;
+  }
+
+  .BoutonEnvoyer{
+    margin-left: 580px;
+    margin-top: 20px;
+  }
+
+  form{
+
+  }
+
+  input{
+    margin-left: 525px;
+    margin-bottom: 15px;
+  }
+}
+
