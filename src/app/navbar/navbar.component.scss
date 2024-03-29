@@ -2,7 +2,7 @@
 
 nav {
   height: 80px;
-  background: linear-gradient(to right, theme.$common-purple, theme.$common-red);
+  background: linear-gradient(to right, theme.$common-red, theme.$common-purple);
 
   div {
     height: 100%;
@@ -25,7 +25,7 @@ mat-nav-list {
   margin-left: 50px;
   display: flex;
   flex-direction: row;
-  width: 250px;
+  width: 450px;
 
   span,
   a {
