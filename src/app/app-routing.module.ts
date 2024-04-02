@@ -10,10 +10,14 @@ import { MajorsResolver } from "majors/majors.resolver"
 import { MajorStudentsResolver } from "majors/major-students/major-students.resolver"
 import { MajorStudentsComponent } from "majors/major-students/major-students.component"
 import { LoginComponent } from "login/login.component"
+import { InscriptionComponent } from "inscription/inscription.component"
+import { ProfilComponent } from "profil/profil.component"
 
 const routes: Routes = [
   { path: "", component: HomeComponent },
   { path: "login", component: LoginComponent },
+  { path: "inscription", component: InscriptionComponent },
+  { path: "profil", component: ProfilComponent },
   {
     path: "etudiants",
     component: StudentsComponent,

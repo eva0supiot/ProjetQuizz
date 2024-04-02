@@ -9,23 +9,27 @@
     display: flex;
     color: theme.$common-purple;
     font-size: xx-large;
-    margin-left: 580px;
+    margin-left: 545px;
     margin-right: 50px;
     margin-bottom: 60px;
     align-items: center;
   }
 
   .BoutonEnvoyer{
-    margin-left: 580px;
     margin-top: 20px;
+    margin-left: 60px;
+  }
+
+  label{
+    margin-top: 40px;
+    margin-left: 490px;
   }
 
   form{
-
+    margin-left: 525px;
   }
 
   input{
-    margin-left: 525px;
     margin-bottom: 15px;
   }
 }
