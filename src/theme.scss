@@ -1,40 +1,40 @@
 @use "@angular/material" as mat;
 @include mat.core();
 
-$dark-purple-palette: (
-  50: #6a0f59,
-  100: #7d1269,
-  200: #74107f,
-  300: #580c61,
-  400: #5d0d82,
-  500: #4a0a67,
-  600: #43095d,
-  700: #35074a,
-  800: #290539,
-  900: #1b0325,
+$red-orange-palette: (
+  50: #E67027,
+  100: #E56723,
+  200: #E35C1E,
+  300: #E1541A,
+  400: #DF4B16,
+  500: #DC4011,
+  600: #DA370D,
+  700: #D82E09,
+  800: #D62505,
+  900: #D41B00,
   contrast: (
-    A50: #eac7f9,
+    A50: #ffa698,
   ),
 );
-$red-purple-palette: (
-  50: #b71c32,
-  100: #b01c32,
-  200: #c31d47,
-  300: #a5193d,
-  400: #b11b52,
-  500: #961644,
-  600: #a01860,
-  700: #82134e,
-  800: #8d1667,
-  900: #751255,
+$yellow-orange-palette: (
+  50: #FFDE59,
+  100: #FCD053,
+  200: #FAC74F,
+  300: #F7BC49,
+  400: #F4AA42,
+  500: #F1A03D,
+  600: #EF9538,
+  700: #EE8E35,
+  800: #EC8430,
+  900: #E97A2C,
   contrast: (
-    A50: #961644,
+    A50: #FFDE59,
   ),
 );
 
-$my-primary: mat.define-palette($dark-purple-palette, 500, 50, 900);
-$my-accent: mat.define-palette($red-purple-palette, 500, 50, 900);
-$my-warn: mat.define-palette(mat.$red-palette);
+$my-primary: mat.define-palette($red-orange-palette, 500, 50, 900);
+$my-accent: mat.define-palette($yellow-orange-palette, 500, 50, 900);
+$my-warn: mat.define-palette(mat.$yellow-palette);
 
 $my-theme: mat.define-light-theme(
   (
@@ -48,7 +48,7 @@ $my-theme: mat.define-light-theme(
 
 @include mat.all-component-colors($my-theme);
 
-$common-purple: mat.get-color-from-palette($dark-purple-palette, 500);
-$common-red: mat.get-color-from-palette(mat.$red-palette, A700);
+$common-red: mat.get-color-from-palette($red-orange-palette, 500);
+$common-yellow: mat.get-color-from-palette(mat.$yellow-palette, A700);
 $warn: mat.get-color-from-palette($my-warn, 400);
 $white: #ffffff;

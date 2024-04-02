@@ -1,28 +1,42 @@
-<span class="title">Bonjour à vous !</span>
-<div>
-  <span class="welcome">Bienvenue sur ce super template de code Angular </span>
-  <img src="assets/sun.gif" height="100">
+
+
+<span class="title">Accueil</span>
+<div class="bienvenue">
+  <span class="welcome">Bienvenue sur King Quizz !</span>
+  <img class="dodo" src="assets/king%20dodo.gif" alt="dodo" />
 </div>
 <span class="title">Qu'est ce que vous allez faire pendant ce cours ?</span>
-<div class="card-group">
-  <div class="card">
-    <img class="card-img-top" src="assets/img1.png" alt="Card image cap" />
-    <div class="card-body">
-      <p class="card-text">
-        Une merveilleuse web app from scratch JAVA Spring - Angular
+<div class="quizz-group">
+  <div class="quizz">
+    @for (student of students$ | async; track student) {
+      <div routerLink="/details-etudiant/{{ student.id }}">
+      <!--<div routerLink="/details-etudiant/{{ student.id }}">
+        <div>{{ student.lastName }}</div>
+        <div>{{ student.firstName }}</div>
+        <div>{{ student.birthdate | date : "dd/MM/yyyy" }}</div>
+        <div>{{ student.major!!.name }}</div>
+      </div>
+     --> <img class="quizz-img-top" src="assets/img1.png" alt="Card image cap" />
+    <div class="quizz-body">
+      <p class="quizz-titre">
+        {{ student.lastName }}
+      </p>
+      <p class="quizz-description">
+        description du quizz {{ student.firstName }}
       </p>
     </div>
+      </div>
+    }
   </div>
-  <div class="card">
-    <img class="card-img-top" src="assets/img2.png" alt="Card image cap" />
-    <div class="card-body">
-      <p class="card-text">Avec une super team de 3 ou 4 personnes</p>
-    </div>
-  </div>
-  <div class="card">
-    <img class="card-img-top" src="assets/img3.png" alt="Card image cap" />
-    <div class="card-body">
-      <p class="card-text">Encadrés par un intervenant prêt à dégainer sa magie noire pour vous aider</p>
+  <div class="quizz">
+    <img class="quizz-img-top" src="assets/img2.png" alt="Card image cap" />
+    <div class="quizz-body">
+      <p class="quizz-titre">
+        Titre du quizz 2
+      </p>
+      <p class="quizz-description">
+        description du quizz 2
+      </p>
     </div>
   </div>
 </div>
