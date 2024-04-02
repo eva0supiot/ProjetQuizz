@@ -13,6 +13,6 @@ export class NavbarComponent {
     this.links.push({ name: "Étudiants", href: "etudiants" })
     this.links.push({ name: "Filières", href: "filieres" })
     this.links.push({ name: "Login", href: "login" })
-    
+
   }
 }

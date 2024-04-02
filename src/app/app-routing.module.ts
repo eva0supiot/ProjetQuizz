@@ -35,6 +35,7 @@ const routes: Routes = [
       majors: MajorsResolver,
     },
   },
+
   {
     path: "etudiants-filiere/:id",
     component: MajorStudentsComponent,
