@@ -22,6 +22,7 @@ export class HomeComponent implements OnInit {
   constructor(private _route: ActivatedRoute, private quizzService: QuizzService,private questionService: QuestionService, private router: Router) {
     this.quizzService.findAll().subscribe((data)=> this.quizzes = data)
     this.questionService.findAll().subscribe((data)=> this.questions = data)
+
   }
   ngOnInit(): void {}
 }
