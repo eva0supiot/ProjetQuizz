@@ -1,6 +1,6 @@
-@if (student$ | async; as student) {
+@if (utilisateur$ | async; as utilisateur) {
 <h1>Données personnelles de l'étudiant</h1>
-<form (ngSubmit)="save(student)" #studentForm="ngForm">
+<form (ngSubmit)="save(utilisateur)" #utilisateurForm="ngForm">
   <div class="form-group">
     <label for="lastName">Nom</label>
     <input
@@ -8,7 +8,7 @@
       class="form-control"
       id="lastName"
       required
-      [(ngModel)]="student.lastName"
+      [(ngModel)]="utilisateur.pseudo"
       name="lastName"
       #lastName="ngModel"
     />
@@ -21,23 +21,23 @@
       class="form-control"
       id="firstName"
       required
-      [(ngModel)]="student.firstName"
+      [(ngModel)]="utilisateur.pseudo"
       name="firstName"
       #firstName="ngModel"
     />
     <div [hidden]="firstName.valid || firstName.pristine" class="alert alert-danger">Le prénom est obligatoire</div>
   </div>
-  <div class="form-group">
+  <!--<div class="form-group">
     <label for="birthDate">Date de naissance</label>
     <input
       type="date"
       class="form-control"
       id="birthDate"
       required
-      [ngModel]="student.birthdate | date : 'yyyy-MM-dd'"
+      [ngModel]="utilisateur.birthdate | date : 'yyyy-MM-dd'"
       name="birthDate"
       #birthDate="ngModel"
-      (ngModelChange)="updateBirthdate($event, student)"
+      (ngModelChange)="updateBirthdate($event, utilisateur)"
     />
     <div
       [hidden]="(birthDate.pristine && birthDate.untouched) || birthDate.value !== today.toISOString().slice(0, 10)"
@@ -45,7 +45,7 @@
     >
       La Date de naissance est obligatoire
     </div>
-  </div>
+  </div>-->
   @if (allMajors$ | async; as allMajors) {
   <div class="form-group">
     <label for="major">Major</label>
@@ -57,7 +57,7 @@
     </select>
   </div>
   }
-  <div class="student-courses">
+  <div class="utilisateur-courses">
     <div class="d-flex align-items-center">
       <h3 class="courses-title">Cours</h3>
       <button type="button" mat-mini-fab color="primary" (click)="courseClick()">
@@ -76,33 +76,33 @@
       @if (notSelectedCourse) {
       <div class="alert alert-danger">Le cours est obligatoire</div>
       }
-      <button
+      <!--<button
         type="button"
         [disabled]="courseSelectModel == null"
-        (click)="addCourseToStudent(student)"
+        (click)="addCourseToUtilisateur(utilisateur)"
         mat-raised-button
         color="primary"
       >
         Ajouter un cours
-      </button>
+      </button>-->
     </div>
     }
     <table class="table">
       <tbody>
-        @for (course of student.courses; track course) {
+        <!--@for (course of utilisateur.courses; track course) {
         <tr>
           <td>{{ course?.name }}</td>
           <td>{{ course?.hours }}</td>
           <td>
-            <button mat-icon-button color="warn" (click)="removeCourseToStudent(student, course)">
+            <button mat-icon-button color="warn" (click)="removeCourseToUtilisateur(utilisateur, course)">
               <mat-icon>delete</mat-icon>
             </button>
           </td>
         </tr>
-        }
+        }-->
       </tbody>
     </table>
   </div>
-  <button type="submit" mat-raised-button color="primary" [disabled]="!studentForm.form.valid">Enregistrer</button>
+  <button type="submit" mat-raised-button color="primary" [disabled]="!utilisateurForm.form.valid">Enregistrer</button>
 </form>
 }

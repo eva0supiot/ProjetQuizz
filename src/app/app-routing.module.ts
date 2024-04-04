@@ -1,14 +1,14 @@
 import { NgModule } from "@angular/core"
 import { RouterModule, Routes } from "@angular/router"
 import { HomeComponent } from "home/home.component"
-import { StudentsComponent } from "students/students.component"
-import { StudentsResolver } from "students/students.resolver"
-import { StudentDetailsComponent } from "students/student-details/student-details.component"
-import { StudentDetailsResolver } from "students/student-details/student-details.resolver"
+import { UtilisateursComponent } from "utilisateurs/utilisateurs.component"
+import { UtilisateursResolver } from "utilisateurs/utilisateurs.resolver"
+import { UtilisateurDetailsComponent } from "utilisateurs/utilisateur-details/utilisateur-details.component"
+import { UtilisateurDetailsResolver } from "utilisateurs/utilisateur-details/utilisateur-details.resolver"
 import { MajorsComponent } from "majors/majors.component"
 import { MajorsResolver } from "majors/majors.resolver"
-import { MajorStudentsResolver } from "majors/major-students/major-students.resolver"
-import { MajorStudentsComponent } from "majors/major-students/major-students.component"
+import { MajorUtilisateursResolver } from "majors/major-utilisateurs/major-utilisateurs.resolver"
+import { MajorUtilisateursComponent } from "majors/major-utilisateurs/major-utilisateurs.component"
 import { LoginComponent } from "login/login.component"
 
 const routes: Routes = [
@@ -16,16 +16,16 @@ const routes: Routes = [
   { path: "login", component: LoginComponent },
   {
     path: "etudiants",
-    component: StudentsComponent,
+    component: UtilisateursComponent,
     resolve: {
-      students: StudentsResolver,
+      utilisateurs: UtilisateursResolver,
     },
   },
   {
     path: "details-etudiant/:id",
-    component: StudentDetailsComponent,
+    component: UtilisateurDetailsComponent,
     resolve: {
-      student: StudentDetailsResolver,
+      utilisateur: UtilisateurDetailsResolver,
     },
   },
   {
@@ -38,9 +38,9 @@ const routes: Routes = [
 
   {
     path: "etudiants-filiere/:id",
-    component: MajorStudentsComponent,
+    component: MajorUtilisateursComponent,
     resolve: {
-      studentsFromMajor: MajorStudentsResolver,
+      utilisateursFromMajor: MajorUtilisateursResolver,
     },
   },
 ]

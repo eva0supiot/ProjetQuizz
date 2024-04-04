@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core"
 import { Observable } from "rxjs"
 import { Major } from "models/major.model"
 import { HttpClient } from "@angular/common/http"
-import { Student } from "../models/student.model"
+import { Utilisateur } from "../models/utilisateur.model"
 
 @Injectable({
   providedIn: "root",
@@ -16,7 +16,7 @@ export class MajorService {
     return this.http.get<Major[]>(this.majorUrl)
   }
 
-  findStudentsFromMajor(majorId: string): Observable<Student[]> {
-    return this.http.get<Student[]>(this.majorUrl + `/${majorId}/students`)
+  findUtilisateursFromMajor(majorId: string): Observable<Utilisateur[]> {
+    return this.http.get<Utilisateur[]>(this.majorUrl + `/${majorId}/utilisateurs`)
   }
 }

@@ -8,21 +8,22 @@
 <span class="title">Qu'est ce que vous allez faire pendant ce cours ?</span>
 <div class="quizz-group">
   <div class="quizz">
-    @for (student of students$ | async; track student) {
-      <div routerLink="/details-etudiant/{{ student.id }}">
-      <!--<div routerLink="/details-etudiant/{{ student.id }}">
-        <div>{{ student.lastName }}</div>
-        <div>{{ student.firstName }}</div>
-        <div>{{ student.birthdate | date : "dd/MM/yyyy" }}</div>
-        <div>{{ student.major!!.name }}</div>
+    @for (utilisateur of utilisateurs$ | async; track utilisateur) {
+      <div routerLink="/details-etudiant/{{ utilisateur.id }}">
+      <!--<div routerLink="/details-etudiant/{{ utilisateur.id }}">
+        <div>{{ utilisateur.pseudo }}</div>
+        <div>{{ utilisateur.mdp }}</div>
+        <div>{{ utilisateur.admin }}</div>
+        <div>{{ utilisateur.scores }}</div>
+        <div>{{ utilisateur.major!!.name }}</div>
       </div>
      --> <img class="quizz-img-top" src="assets/img1.png" alt="Card image cap" />
     <div class="quizz-body">
       <p class="quizz-titre">
-        {{ student.lastName }}
+        {{ utilisateur.pseudo }}
       </p>
       <p class="quizz-description">
-        description du quizz {{ student.firstName }}
+        description du quizz {{ utilisateur.pseudo }}
       </p>
     </div>
       </div>

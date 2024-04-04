@@ -1,8 +1,8 @@
 import { Component, OnInit } from "@angular/core"
-import { Student } from "models/student.model"
+import { Utilisateur } from "models/utilisateur.model"
 import { map, Observable } from "rxjs"
 import { ActivatedRoute, Router } from "@angular/router"
-import { StudentService } from "../services/student.service"
+import { UtilisateurService } from "../services/utilisateur.service"
 
 @Component({
   selector: "home",
@@ -10,9 +10,9 @@ import { StudentService } from "../services/student.service"
   styleUrls: ["./home.component.scss"],
 })
 export class HomeComponent implements OnInit {
-  students$: Observable<Student[]> = this._route.data.pipe(map((data) => data["students"]))
+  utilisateurs$: Observable<Utilisateur[]> = this._route.data.pipe(map((data) => data["utilisateurs"]))
 
-  constructor(private _route: ActivatedRoute, private studentService: StudentService, private router: Router) {}
+  constructor(private _route: ActivatedRoute, private utilisateurService: UtilisateurService, private router: Router) {}
 
   ngOnInit(): void {}
 }
