@@ -1,14 +1,37 @@
-<div class="d-flex align-items-center" xmlns="http://www.w3.org/1999/html">
-  <h1>Incription</h1>
-</div>
-
 <body>
-<form method="post">
-  <input type="text" name="pseudo" id="pseudo" placeholder="Votre pseudo" required><br>
-  <input type="text" name="mdp" placeholder="Votre mot de passe" required><br>
-  <input class="BoutonEnvoyer" type="submit" name="formsend" id="formsend">
+<form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+  <h1>Inscription</h1>
+  <div>
+    <label for="name">Pseudo:</label>
+    <input class="InfoSaisie" id="name" formControlName="name">
+    <label for="mdp">Mot de passe:</label>
+    <input class="InfoSaisie" id="mdp" formControlName="mdp">
+  </div>
+  <div class="Rb">
+    <mat-radio-group aria-label="Select an option" (change)="onRadioButtonChange($event)" formControlName="imageName">
+      <mat-radio-button value="PhotoProfil1" class="Rb"><img src="assets/PhotoProfil1.jpg" height="100px"/></mat-radio-button>
+      <mat-radio-button value="PhotoProfil1" class="Rb"><img src="assets/PhotoProfil1.jpg" height="100px"/></mat-radio-button>
+      <mat-radio-button value="PhotoProfil1" class="Rb"><img src="assets/PhotoProfil1.jpg" height="100px"/></mat-radio-button>
+      <mat-radio-button value="PhotoProfil1" class="Rb"><img src="assets/PhotoProfil1.jpg" height="100px"/></mat-radio-button>
+      <mat-radio-button value="PhotoProfil1" class="Rb"><img src="assets/PhotoProfil1.jpg" height="100px"/></mat-radio-button>
+    </mat-radio-group>
+  </div>
+  <button mat-raised-button type="submit" [disabled]="myForm.invalid">S'incrire !</button>
 </form>
-<label>Selectionner une photo de profil :</label>
-<input type="submit" value="..." onclick="window.open('SelecImageProfil.htm','wclose',
-'width=500,height=250,toolbar=si, scroolbar=si, status=si,left=20,top=30');return false;">
+
+
+<!-- A utiliser pour la partie Admin
+  @for (user of users; track user.id) {
+    <mat-card class="example-card">
+      <mat-card-header>
+        <mat-card-title>{{user.id}}</mat-card-title>
+        <img mat-card-sm-image src="assets/{{user.imageName}}.jpg" >
+      </mat-card-header>
+    </mat-card>
+  }
+  @for (user of users; track user.id) {
+    <label>{{user.imageName}}</label>
+  }
+  -->
+
 </body>

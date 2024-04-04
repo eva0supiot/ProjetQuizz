@@ -11,15 +11,17 @@ import {MatCard, MatCardHeader, MatCardSmImage, MatCardTitle, MatCardTitleGroup}
   selector: 'app-root',
   standalone: true,
   imports: [CommonModule, RouterOutlet, MatRadioGroup, MatRadioButton, ReactiveFormsModule, MatButton, MatCard, MatCardHeader, MatCardTitleGroup, MatCardTitle, MatCardSmImage],
-  templateUrl: './inscription.component.html',
-  styleUrl: './inscription.component.scss'
+  templateUrl: './profil.component.html',
+  styleUrl: './profil.component.scss'
 })
-export class InscriptionComponent {
+export class ProfilComponent {
   users : User [] = []
 
   // il existe deux facons de faire des formulaires en angular : ici les reactives forms (sinon c'est ngForm)
   myForm = new FormGroup({
     name: new FormControl('', [Validators.required]),
+    mdp: new FormControl('', [Validators.required]),
+    score: new FormControl('', [Validators.required]),
     imageName: new FormControl('', Validators.required)
   });
   constructor() {
@@ -33,28 +35,17 @@ export class InscriptionComponent {
 
   // cette méthode sert à faire comme si j'appelais mon API et qu'elle me retournais deux utilisateurs
   mockUserData() : Observable<User[]> {
-    const users : User[] = [{id: "AZER", imageName: "image1"}, {id: "TFES", imageName: "image2"}]
+    // @ts-ignore
+    const users : User[] = [{name: "Dorian", mdp: "123456", score: "15", imageName: "PhotoProfil1"}]
     return of(users)
-  }
-
-  // cette méthode n'est pas obligatoire c'est pour montrer comment récupérer la valeur d'un radio button
-  onRadioButtonChange($event: MatRadioChange) {
-    console.log($event.value);
-  }
-
-
-  // lorsque je soumets mon formulaire
-  onSubmit() {
-    console.log(this.myForm)
-    const newUser: User = {id: this.myForm.controls.name.value!!, imageName : this.myForm.controls.imageName.value!!}
-    console.log(newUser)
-    this.postUser(newUser);
   }
 }
 
 
 // a mettre dans un autre fichier
 export interface User {
-  id: string,
+  name: string,
+  mdp: string,
+  score: string,
   imageName : string
 }

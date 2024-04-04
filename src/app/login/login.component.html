@@ -1,12 +1,13 @@
-<div class="d-flex align-items-center">
-  <h1>Connexion</h1>
-</div>
-
 <body>
-<form method="post">
-  <input type="text" name="pseudo" id="pseudo" placeholder="Pseudo" required><br>
-  <input type="text" name="mdp" placeholder="Mot de passe" required><br>
-  <input class="BoutonEnvoyer" type="submit" name="formsend" placeholder="Connexion" id="formsend">
+<form>
+  <h1>Connexion</h1>
+  <div class="InfoUser">
+    <label for="name">Pseudo:</label>
+    <input class="InfoSaisie" id="name" formControlName="name">
+    <label for="mdp">Mot de passe:</label>
+    <input class="InfoSaisie" id="mdp" formControlName="mdp">
+  </div>
+  <button>Connexion !</button>
+  <Label class="inscription">Tu n'a pas de compte ? <a href="/inscription">Inscription</a></Label>
 </form>
-<Label>Tu n'a pas de compte ? <a href="/inscription">Inscription</a></Label>
 </body>
