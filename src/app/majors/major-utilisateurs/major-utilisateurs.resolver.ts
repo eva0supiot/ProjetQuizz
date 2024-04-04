@@ -1,11 +1,11 @@
 import { inject } from "@angular/core"
 import { ActivatedRouteSnapshot, ResolveFn, RouterStateSnapshot } from "@angular/router"
 import { MajorService } from "../../services/major.service"
-import { Student } from "../../models/student.model"
+import { Utilisateur } from "../../models/utilisateur.model"
 
-export const MajorStudentsResolver: ResolveFn<Student[]> = (
+export const MajorUtilisateursResolver: ResolveFn<Utilisateur[]> = (
   route: ActivatedRouteSnapshot,
   state: RouterStateSnapshot,
 ) => {
-  return inject(MajorService).findStudentsFromMajor(route.params["id"])
+  return inject(MajorService).findUtilisateursFromMajor(route.params["id"])
 }
