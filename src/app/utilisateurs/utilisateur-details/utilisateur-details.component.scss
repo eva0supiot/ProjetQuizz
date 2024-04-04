@@ -1,5 +1,6 @@
 @use "theme";
 
+
 :host {
   display: flex;
   flex-direction: column;
@@ -8,7 +9,7 @@
 }
 
   h1 {
-    color: theme.$common-purple;
+    color: theme.$common-red;
     font-size: xx-large;
   }
 
@@ -21,7 +22,7 @@
     margin: 10px 0;
   }
 
-  .student-courses {
+  .utilisateur-courses {
     .courses-title {
       font-size: large;
       margin: 10px 10px 10px 0;

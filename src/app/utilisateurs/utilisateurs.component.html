@@ -13,14 +13,15 @@
     </tr>
   </thead>
   <tbody>
-    @for (student of students$ | async; track student) {
-    <tr routerLink="/details-etudiant/{{ student.id }}">
-      <td>{{ student.lastName }}</td>
-      <td>{{ student.firstName }}</td>
-      <td>{{ student.birthdate | date : "dd/MM/yyyy" }}</td>
-      <td>{{ student.major!!.name }}</td>
+    @for (utilisateur of utilisateurs$ | async; track utilisateur) {
+    <tr routerLink="/details-etudiant/{{ utilisateur.id }}">
+      <td>{{ utilisateur.pseudo }}</td>
+      <td>{{ utilisateur.mdp }}</td>
+      <td>{{ utilisateur.admin }}</td>
+      <td>{{ utilisateur.scores }}</td>
+      <!--<td>{{ utilisateur.major!!.name }}</td>-->
       <td>
-        <button mat-icon-button color="warn" (click)="deleteStudent($event, student)">
+        <button mat-icon-button color="warn" (click)="deleteUtilisateur($event, utilisateur)">
           <mat-icon>delete</mat-icon>
         </button>
       </td>
