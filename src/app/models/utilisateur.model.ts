@@ -7,7 +7,5 @@ export interface Utilisateur {
   mdp: string
   admin: boolean
   scores: string
-  pdp?: string
-//  courses?: Course[]
-//  major: Major
+  pdp?: string | null;
 }

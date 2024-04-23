@@ -24,7 +24,7 @@ export class UtilisateurService {
     return this.http.post<Utilisateur>(`${this.utilisateursUrl}/${id}`, utilisateur)
   }
 
-  create(utilisateur: Utilisateur): Observable<Utilisateur> {
+  add(utilisateur: Utilisateur): Observable<Utilisateur> {
     return this.http.post<Utilisateur>(this.utilisateursUrl, utilisateur)
   }
 

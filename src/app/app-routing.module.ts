@@ -13,7 +13,7 @@ import { LoginComponent } from "login/login.component"
 import { InscriptionComponent } from "inscription/inscription.component"
 import { ProfilComponent } from "profil/profil.component"
 import { QuizzComponent } from "./quizz/quizz.component"
-
+import { ProfilAdminComponent } from "profil-admin/profil-admin.component"
 
 const routes: Routes = [
   { path: "", component: HomeComponent },
@@ -21,6 +21,7 @@ const routes: Routes = [
   { path: "login", component: LoginComponent },
   { path: "inscription", component: InscriptionComponent },
   { path: "profil", component: ProfilComponent },
+  { path: "profil-admin", component: ProfilAdminComponent },
   {
     path: "etudiants",
     component: UtilisateursComponent,

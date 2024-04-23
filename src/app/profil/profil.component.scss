@@ -1,9 +1,6 @@
 @use "theme";
 
 :host {
-  display: flex;
-  flex-direction: column;
-  padding: 30px;
 
   .PhotoProfil{
     display: flex;
@@ -14,5 +11,9 @@
   }
   .InfoUser{
     display: flex;
+  }
+
+  label{
+    margin-left: 20px;
   }
 }
