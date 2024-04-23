@@ -4,5 +4,5 @@ export interface Reponse {
   id?: bigint
   contenu : string
   solution : boolean
-  question? : Question
+  question : Question
 }

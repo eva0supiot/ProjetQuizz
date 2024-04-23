@@ -12,10 +12,12 @@ import { MajorUtilisateursComponent } from "majors/major-utilisateurs/major-util
 import { LoginComponent } from "login/login.component"
 import { InscriptionComponent } from "inscription/inscription.component"
 import { ProfilComponent } from "profil/profil.component"
+import { QuizzComponent } from "./quizz/quizz.component"
 
 
 const routes: Routes = [
   { path: "", component: HomeComponent },
+  { path: "quizz/:id", component: QuizzComponent },
   { path: "login", component: LoginComponent },
   { path: "inscription", component: InscriptionComponent },
   { path: "profil", component: ProfilComponent },

@@ -1,0 +1,59 @@
+@use "theme";
+
+:host {
+  display: flex;
+  margin: 25px;
+  flex-direction: column;
+  align-items: center;
+
+  .title {
+    align-content: center;
+    align-items: center;
+    display: flex;
+    color: theme.$common-red;
+    font-size: xx-large;
+    margin-top : 80px;
+    margin-bottom : 100px;
+  }
+
+  .quizz-group {
+    //margin-top: 50px;
+    //margin-left: 50px;
+    border: none;
+    display: flex;
+    align-items: baseline;
+
+    img {
+      height: 25%;
+      width: 25%;
+      margin-left: 20px;
+    }
+
+    .question {
+      font-size: x-large;
+      //margin-top: 0;
+      //line-height: 1.7;
+      //max-width: 400px;
+      //margin-left: 15px;
+      position: relative;
+      top: 100px;
+      left: 50px;
+
+      .question-titre{
+
+      }
+
+      .réponses{
+
+        .mat-checkbox-checked.réponse_button.mat-checkbox-inner-container {
+          background-color: theme.$common-red;
+        }
+      }
+    }
+  }
+
+}
+
+.mat-checkbox-checked.réponse_button.mat-checkbox-inner-container {
+  background-color: theme.$common-red;
+}

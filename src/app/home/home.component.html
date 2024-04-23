@@ -7,7 +7,7 @@
   <img class="dodo" src="assets/king%20dodo.gif" alt="dodo" />
 </div>
 
-<span class="title">Qu'est ce que vous allez faire pendant ce cours ?</span>
+<span class="title">Quizzes disponibles actuellement !</span>
 
 <div class="quizz-group">
 
@@ -15,7 +15,7 @@
 
   <div class="quizz">
 
-        <img class="quizz-img-top" src="assets/img1.png" alt="Card image cap" />
+    <a routerLink="/quizz/{{ quizz.id }}" > <img class="quizz-img-top" src="assets/img1.png" alt="Card image cap"> </a>
 
         <div class="quizz-body">
 
@@ -35,14 +35,6 @@
         <div class="question" >
           <p class="quizz-titre">
             {{ question.contenu }}
-          </p>
-        </div>
-      }
-      @else
-      {
-        <div class="question">
-          <p class="quizz-titre">
-            Question sans quizz associé
           </p>
         </div>
       }

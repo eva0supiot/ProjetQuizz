@@ -1,0 +1,32 @@
+
+@if (quizz) {
+  <span class="title">{{ quizz.titre }}</span>
+
+
+  <div class="quizz-group">
+
+    @for (question of questions ; track question) {
+
+      @if (question.quizz.id == quizz.id) {
+        <div class="question" >
+          <p class="question-titre">
+            {{ question.contenu }}
+          </p>
+          <div class="réponses">
+            @for (reponse of reponses ; track reponse) {
+
+              @if (reponse.question.id == question.id) {
+                <mat-checkbox class="réponse_button">
+                  {{ reponse.contenu }}
+                </mat-checkbox>
+              }
+            }
+          </div>
+        </div>
+      }
+    }
+  </div>
+
+} @else {
+  <span class="title">Le quizz que vous cherchez n'existe pas</span>
+}

@@ -15,4 +15,7 @@ export class QuizzService {
   findAll(): Observable<Quizz[]> {
     return this.http.get<Quizz[]>(this.quizzesUrl)
   }
+  findById(id: number): Observable<Quizz> {
+    return this.http.get<Quizz>(`${this.quizzesUrl}/${id}`)
+  }
 }
