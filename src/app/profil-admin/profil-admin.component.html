@@ -1,0 +1,51 @@
+<form [formGroup]="myForm" class="form1">
+  <h1>Ajout Utilisateur</h1>
+    <div>
+      <label for="pseudo">Pseudo:</label>
+      <input class="InfoSaisie" id="pseudo" name="pseudo" [(ngModel)]="user1.pseudo" required>
+      <label for="mdp">Mot de passe:</label>
+      <input class="InfoSaisie" id="mdp" name="mdp" [(ngModel)]="user1.mdp" required>
+    </div>
+    <div class="Rb">
+      <mat-radio-group aria-label="Select an option" (change)="onRadioButtonChange($event)" formControlName="imageName">
+        <mat-radio-button value="PhotoProfil1" class="Rb"><img src="assets/PhotoProfil1.jpg" height="100px"/></mat-radio-button>
+        <mat-radio-button value="PhotoProfil1" class="Rb"><img src="assets/PhotoProfil1.jpg" height="100px"/></mat-radio-button>
+        <mat-radio-button value="PhotoProfil1" class="Rb"><img src="assets/PhotoProfil1.jpg" height="100px"/></mat-radio-button>
+        <mat-radio-button value="PhotoProfil1" class="Rb"><img src="assets/PhotoProfil1.jpg" height="100px"/></mat-radio-button>
+        <mat-radio-button value="PhotoProfil1" class="Rb"><img src="assets/PhotoProfil1.jpg" height="100px"/></mat-radio-button>
+      </mat-radio-group>
+    </div>
+    <button type="button" (click)="AjouterUser()">Ajouter</button>
+</form>
+
+<form [formGroup]="myForm" class="form1">
+  <h1>Supprimer Utilisateur</h1>
+  <div class="SupUser">
+    @for (utilisateur of utilisateurs ; track utilisateur) {
+      <div>
+        <p>Pseudo: {{utilisateur.pseudo}}</p>
+        <p>ID: {{utilisateur.id}}</p>
+        <p>Score: {{utilisateur.scores}}</p>
+        <p>Mot de passe: {{utilisateur.mdp}}</p>
+        <button type="button" (click)="SupprimerUser(utilisateur)">Supprimer</button>
+      </div>
+    }
+  </div>
+</form>
+
+<form [formGroup]="myForm" class="form1">
+  <h1>Ajout Quizz</h1>
+</form>
+
+<form [formGroup]="myForm" class="form1">
+  <h1>Supprimer Quizz</h1>
+  <div class="SupQuizz">
+    @for (quizz of quizzes ; track quizz) {
+      <div>
+        <p>Titre: {{quizz.titre}}</p>
+        <p>ID: {{quizz.id}}</p>
+        <button type="button" (click)="SupprimerQuizz(quizz)">Supprimer</button>
+      </div>
+    }
+  </div>
+</form>

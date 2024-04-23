@@ -8,6 +8,7 @@ import { Quizz } from "../models/quizz.model"
   providedIn: "root",
 })
 export class QuizzService {
+  private quizzSelectionne: any;
   constructor(private http: HttpClient) {}
 
   private quizzesUrl = "http://localhost:8080/quizzes"
@@ -15,4 +16,7 @@ export class QuizzService {
   findAll(): Observable<Quizz[]> {
     return this.http.get<Quizz[]>(this.quizzesUrl)
   }
+
+
+
 }

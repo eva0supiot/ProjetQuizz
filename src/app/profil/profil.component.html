@@ -1,15 +1,10 @@
 <body>
-<form>
-  <h1>Connexion</h1>
+  <h1>{{utilisateurs[0].pseudo}}</h1>
   <div class="InfoUser">
-    @for (user of users; track user.name) {
-      <img src="assets/{{user.imageName}}.jpg" >
-      <label>Pseudo: {{user.name}}</label>
-      <label>Mot de passe: {{user.mdp}}</label>
-      <label>Score: {{user.score}}</label>
-    }
+      <img src="{{utilisateurs[0].pdp}}" >
+      <label>Mot de passe: {{utilisateurs[0].mdp}}</label>
+      <label>Score: {{utilisateurs[0].scores}}</label>
   </div>
-</form>
 </body>
 
 

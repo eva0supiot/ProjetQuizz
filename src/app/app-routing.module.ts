@@ -12,6 +12,7 @@ import { MajorUtilisateursComponent } from "majors/major-utilisateurs/major-util
 import { LoginComponent } from "login/login.component"
 import { InscriptionComponent } from "inscription/inscription.component"
 import { ProfilComponent } from "profil/profil.component"
+import { ProfilAdminComponent } from "profil-admin/profil-admin.component"
 
 
 const routes: Routes = [
@@ -19,6 +20,7 @@ const routes: Routes = [
   { path: "login", component: LoginComponent },
   { path: "inscription", component: InscriptionComponent },
   { path: "profil", component: ProfilComponent },
+  { path: "profil-admin", component: ProfilAdminComponent },
   {
     path: "etudiants",
     component: UtilisateursComponent,

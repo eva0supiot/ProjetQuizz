@@ -1,0 +1,52 @@
+@use "theme";
+
+:host {
+  display: flex;
+  align-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 30px;
+
+  .form1 {
+    width: 950px;
+    height: auto;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 2px solid #eee6e6;
+    border-radius: 10px;
+    margin: 20px;
+    .Rb{
+      margin-top: 50px;
+    }
+    label{
+      margin-left: 30px;
+    }
+    div {
+      margin-top: 30px;
+    }
+    button {
+      margin-top: 10px;
+    }
+    mat-radio-button{
+      margin-top: 60px;
+    }
+    button{
+      margin-top: 40px;
+    }
+    img{
+      border-radius: 50%;
+    }
+    .SupUser div p {
+      display: inline;
+      margin-right: 20px;
+    }
+
+    .SupQuizz div p {
+      display: inline;
+      margin-right: 20px;
+    }
+  }
+
+}

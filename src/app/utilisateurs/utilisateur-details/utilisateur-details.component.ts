@@ -56,7 +56,7 @@ export class UtilisateurDetailsComponent {
     }*/
 
     if (id == "new") {
-      this.utilisateurService.create(utilisateur).subscribe(() => {
+      this.utilisateurService.add(utilisateur).subscribe(() => {
         this.router.navigate(["utilisateurs"])
       })
     } else {

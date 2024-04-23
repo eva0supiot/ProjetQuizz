@@ -1,13 +1,15 @@
 <body>
-<form>
+<form [formGroup]="userForm" (ngSubmit)="connexion()">
   <h1>Connexion</h1>
   <div class="InfoUser">
-    <label for="name">Pseudo:</label>
-    <input class="InfoSaisie" id="name" formControlName="name">
+    <label for="pseudo">Pseudo:</label>
+    <input class="InfoSaisie" id="pseudo" formControlName="pseudo">
     <label for="mdp">Mot de passe:</label>
-    <input class="InfoSaisie" id="mdp" formControlName="mdp">
+    <input class="InfoSaisie" id="mdp" formControlName="mdp" type="password">
   </div>
-  <button>Connexion !</button>
+
+  <button type="submit">Connexion !</button>
+
   <Label class="inscription">Tu n'a pas de compte ? <a href="/inscription">Inscription</a></Label>
 </form>
 </body>
