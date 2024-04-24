@@ -36,6 +36,8 @@ export class ProfilAdminComponent {
   quizzes: Quizz[] = [];
   questions: Question[] = [];
 
+  userForm: FormGroup = new FormGroup({});
+
   user1: Utilisateur = {
     pseudo: '',
     mdp: '',
@@ -48,6 +50,7 @@ export class ProfilAdminComponent {
     this.utilisateurService.findAll().subscribe((data)=> this.utilisateurs = data)
     this.quizzService.findAll().subscribe((data)=> this.quizzes = data)
     this.questionService.findAll().subscribe((data)=> this.questions = data)
+    this.initForm();
 
   }
 
@@ -58,38 +61,66 @@ export class ProfilAdminComponent {
     imageName: new FormControl('', Validators.required)
   });
 
+  initForm() {
+    this.userForm = this.fb.group({
+      pseudo: ['', Validators.required],
+      mdp: ['', Validators.required],
+      admin: [false, Validators.required],
+      scores: ['0', Validators.required],
+      pdp: [null]
+    });
+  }
+
   onRadioButtonChange($event: MatRadioChange) {
     console.log($event.value);
   }
 
   AjouterUser() {
-    this.utilisateurService.add(this.user1).subscribe(
-      response => {
 
-        console.log('Utilisateur ajouté avec succès', response);
-        this.user1 = {
-          pseudo: '',
-          mdp: '',
-          admin: false,
-          scores: '',
-          pdp: null
-        };
-        // Traitez la réponse ici, par exemple, affichez un message de succès à l'utilisateur
-      },
-      error => {
-        this._snackBar.open("Rseultat :"+this.user1.mdp+this.user1.pseudo+"okok", '', {duration: 5000} )
+    //this._snackBar.open('INfo :'+this.userForm.value.pseudo+this.userForm.value.mdp, '', { duration: 5000 });
+    const pseudoExist = this.utilisateurs.some(user => user.pseudo === this.userForm.value.pseudo);
+    if (pseudoExist) {
+      this._snackBar.open('L\'utilisateur existe déjà', '', { duration: 5000 });
+      return;
+    }
+    else {
+      const newUser: Utilisateur = this.userForm.value;
 
-        console.error('Erreur lors de l\'ajout de l\'utilisateur', error);
-        // Traitez l'erreur ici, par exemple, affichez un message d'erreur à l'utilisateur
-      }
-    );
+      this.utilisateurService.add(newUser).subscribe(
+        response => {
+          this._snackBar.open('Utilisateur ajouté avec succès', '', { duration: 5000 });
+          console.log('Utilisateur ajouté avec succès', response);
+          this.userForm.reset();
+        },
+        error => {
+          this._snackBar.open('Erreur lors de l\'ajout de l\'utilisateur', '', { duration: 5000 });
+          console.error('Erreur lors de l\'ajout de l\'utilisateur', error);
+        }
+      );
+    }
   }
 
-  SupprimerUser(Utilisateur: any) {
-    this.utilisateurs.forEach((user: Utilisateur) => {
 
-
-    })
+  SupprimerUser(utilisateur: Utilisateur) {
+      if(utilisateur.pseudo === 'noriane')
+      {
+        this._snackBar.open('Vous ne pouvez pas supprimer l\'admin', '', { duration: 5000 });
+      }
+      else{
+        if (confirm("Êtes-vous sûr de vouloir supprimer cet utilisateur ?")) {
+          this.utilisateurService.delete(utilisateur).subscribe(
+            response => {
+              this.utilisateurs = this.utilisateurs.filter(u => u.id !== utilisateur.id);
+              this._snackBar.open('Utilisateur supprimé avec succès', '', { duration: 5000 });
+              console.log('Utilisateur supprimé avec succès', response);
+            },
+            error => {
+              this._snackBar.open('Erreur lors de la suppression de l\'utilisateur', '', { duration: 5000 });
+              console.error('Erreur lors de la suppression de l\'utilisateur', error);
+            }
+          );
+        }
+      }
   }
 
   SupprimerQuizz(Quizz: any) {

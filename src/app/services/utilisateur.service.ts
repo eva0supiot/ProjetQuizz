@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core"
-import { Observable } from "rxjs"
+import { map, Observable } from "rxjs"
 import { Utilisateur } from "models/utilisateur.model"
 import { Course } from "models/course.model"
 import { HttpClient } from "@angular/common/http"
@@ -8,6 +8,7 @@ import { HttpClient } from "@angular/common/http"
   providedIn: "root",
 })
 export class UtilisateurService {
+  private _snackBar: any
   constructor(private http: HttpClient) {}
 
   private utilisateursUrl = "http://localhost:8080/utilisateurs"
@@ -31,6 +32,8 @@ export class UtilisateurService {
   delete(utilisateur: Utilisateur) {
     return this.http.delete(`${this.utilisateursUrl}/${utilisateur.id}`)
   }
+
+
 
   /*addCourseToUtilisateur(utilisateur: Utilisateur, course: Course) {
     if (utilisateur.courses == undefined) {

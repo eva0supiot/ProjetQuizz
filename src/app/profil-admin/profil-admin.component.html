@@ -1,10 +1,10 @@
-<form [formGroup]="myForm" class="form1">
+<form [formGroup]="userForm" class="form1">
   <h1>Ajout Utilisateur</h1>
     <div>
       <label for="pseudo">Pseudo:</label>
-      <input class="InfoSaisie" id="pseudo" name="pseudo" [(ngModel)]="user1.pseudo" required>
+      <input class="InfoSaisie" id="pseudo" name="pseudo" formControlName="pseudo" required>
       <label for="mdp">Mot de passe:</label>
-      <input class="InfoSaisie" id="mdp" name="mdp" [(ngModel)]="user1.mdp" required>
+      <input class="InfoSaisie" id="mdp" name="mdp" formControlName="mdp" required>
     </div>
     <div class="Rb">
       <mat-radio-group aria-label="Select an option" (change)="onRadioButtonChange($event)" formControlName="imageName">
@@ -18,7 +18,7 @@
     <button type="button" (click)="AjouterUser()">Ajouter</button>
 </form>
 
-<form [formGroup]="myForm" class="form1">
+<form class="form1">
   <h1>Supprimer Utilisateur</h1>
   <div class="SupUser">
     @for (utilisateur of utilisateurs ; track utilisateur) {
@@ -33,11 +33,11 @@
   </div>
 </form>
 
-<form [formGroup]="myForm" class="form1">
+<form class="form1">
   <h1>Ajout Quizz</h1>
 </form>
 
-<form [formGroup]="myForm" class="form1">
+<form class="form1">
   <h1>Supprimer Quizz</h1>
   <div class="SupQuizz">
     @for (quizz of quizzes ; track quizz) {
