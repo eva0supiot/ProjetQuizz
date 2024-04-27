@@ -16,9 +16,14 @@
             @for (reponse of reponses ; track reponse) {
 
               @if (reponse.question.id == question.id) {
-                <mat-checkbox class="réponse_button">
-                  {{ reponse.contenu }}
-                </mat-checkbox>
+
+                <label class="réponse_button">
+
+                  <input type="checkbox">
+                  <div class="checkmark"> </div>
+                  <div class="réponse_text">{{ reponse.contenu }}</div>
+
+                </label>
               }
             }
           </div>
@@ -26,6 +31,8 @@
       }
     }
   </div>
+
+  <button (click)="sendData()" > Valider </button>
 
 } @else {
   <span class="title">Le quizz que vous cherchez n'existe pas</span>

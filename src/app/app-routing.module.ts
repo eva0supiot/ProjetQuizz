@@ -14,10 +14,13 @@ import { InscriptionComponent } from "inscription/inscription.component"
 import { ProfilComponent } from "profil/profil.component"
 import { QuizzComponent } from "./quizz/quizz.component"
 import { ProfilAdminComponent } from "profil-admin/profil-admin.component"
+import { ValidationQuizzComponent } from "validation-quizz/validation-quizz.component"
 
 const routes: Routes = [
   { path: "", component: HomeComponent },
+  { path: "", redirectTo: '/quizz/:id', pathMatch: 'full' },
   { path: "quizz/:id", component: QuizzComponent },
+  { path: "validation-quizz", component: ValidationQuizzComponent },
   { path: "login", component: LoginComponent },
   { path: "inscription", component: InscriptionComponent },
   { path: "profil", component: ProfilComponent },

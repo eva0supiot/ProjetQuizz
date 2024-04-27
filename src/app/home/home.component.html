@@ -17,28 +17,11 @@
 
     <a routerLink="/quizz/{{ quizz.id }}" > <img class="quizz-img-top" src="assets/img1.png" alt="Card image cap"> </a>
 
-        <div class="quizz-body">
+    <div class="quizz-titre"> {{ quizz.titre }} </div>
 
-          <p class="quizz-titre">
-            {{ quizz.titre }}
-          </p>
+    <button > Jouer </button>
 
-          <p class="quizz-description">
-            description du quizz {{ quizz.titre }}
-          </p>
-
-        </div>
-
-    @for (question of questions ; track question) {
-
-      @if (question.quizz.id == quizz.id) {
-        <div class="question" >
-          <p class="quizz-titre">
-            {{ question.contenu }}
-          </p>
-        </div>
-      }
-    }
+    <button > Scores </button>
 
   </div>
     }
