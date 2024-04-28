@@ -16,12 +16,12 @@
     padding: 140px 120px;
     border-radius: 20px;
     position: relative;
-    margin: 0 50px;
+    margin: 0 80px;
   }
 
   .BoiteUser:hover{
     border: #E97A2C 3px solid;
-    box-shadow:  21px 21px 41px #f5d18b,-21px -21px 41px #ffffff;
+    box-shadow:  0 21px 41px 0 #f5d18b;
     transition: box-shadow 0.3s ease-in-out, border 0.3s ease-in-out;
   }
 
@@ -30,12 +30,26 @@
     width: 200px;
     border: #F7BC49 3px solid;
     border-radius: 50%;
-    box-shadow:  21px 21px 41px #f5d18b,-21px -21px 41px #ffffff;
+    box-shadow:  0 21px 41px 0 #f5d18b;
     margin-bottom: 40px;
   }
   .Pseudo{
-    border: #D41B00 2px solid;
+    border: #E97A2C 2px solid;
     border-radius: 30px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .TabScores{
+    border: #F7BC49 3px solid;
+    min-height: 620px;
+    width: 1000px;
+    border-radius: 20px;
+    position: relative;
+    margin: 0 80px;
+  }
+
+  .Scores{
     display: flex;
     justify-content: center;
   }
