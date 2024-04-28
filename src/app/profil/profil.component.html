@@ -1,9 +1,13 @@
 <body>
-  <h1>{{utilisateurs[0].pseudo}}</h1>
   <div class="InfoUser">
-      <img src="{{utilisateurs[0].pdp}}" >
-      <label>Mot de passe: {{utilisateurs[0].mdp}}</label>
-      <label>Score: {{utilisateurs[0].scores}}</label>
+    <div class ="BoiteUser">
+      <!--<img src="{{utilisateurs[0].pdp}}" >-->
+      <img class="PhotoProfil" src="./assets/PhotoProfil1.jpg" alt="bla">
+      <h1 class="Pseudo">{{utilisateurs[0].pseudo}}</h1>
+      <label class="MotDePasse">Mot de passe : {{utilisateurs[0].mdp}}</label><br>
+      <label class="ScoresCumule">Scores cumulés : {{utilisateurs[0].scores}}</label>
+    </div>
+    <label class="Scores">Score : {{utilisateurs[0].scores}}</label>
   </div>
 </body>
 

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgOptimizedImage } from "@angular/common"
 import { ActivatedRoute, Router, RouterOutlet } from "@angular/router"
 import {Observable, of} from "rxjs";
 import {MatRadioButton, MatRadioChange, MatRadioGroup} from "@angular/material/radio";
@@ -13,7 +13,7 @@ import { UtilisateurService } from "../services/utilisateur.service"
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, MatRadioGroup, MatRadioButton, ReactiveFormsModule, MatButton, MatCard, MatCardHeader, MatCardTitleGroup, MatCardTitle, MatCardSmImage],
+  imports: [CommonModule, RouterOutlet, MatRadioGroup, MatRadioButton, ReactiveFormsModule, MatButton, MatCard, MatCardHeader, MatCardTitleGroup, MatCardTitle, MatCardSmImage, NgOptimizedImage],
   templateUrl: './profil.component.html',
   styleUrl: './profil.component.scss'
 })

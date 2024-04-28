@@ -2,10 +2,44 @@
 
 :host {
 
+  .InfoUser{
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    height: 100%;
+  }
+
+  .BoiteUser{
+    //background-image: url("./assets/boite_profil_fond.png");
+    //background-color: #F7BC49;
+    border: #F7BC49 3px solid;
+    padding: 140px 120px;
+    border-radius: 20px;
+    position: relative;
+    margin: 0 50px;
+  }
+
+  .BoiteUser:hover{
+    border: #E97A2C 3px solid;
+    box-shadow:  21px 21px 41px #f5d18b,-21px -21px 41px #ffffff;
+    transition: box-shadow 0.3s ease-in-out, border 0.3s ease-in-out;
+  }
+
   .PhotoProfil{
     display: flex;
-
+    width: 200px;
+    border: #F7BC49 3px solid;
+    border-radius: 50%;
+    box-shadow:  21px 21px 41px #f5d18b,-21px -21px 41px #ffffff;
+    margin-bottom: 40px;
   }
+  .Pseudo{
+    border: #D41B00 2px solid;
+    border-radius: 30px;
+    display: flex;
+    justify-content: center;
+  }
+
   .InfoQuiz{
     display: flex;
   }
