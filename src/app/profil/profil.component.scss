@@ -49,6 +49,12 @@
     margin: 0 80px;
   }
 
+  .TabScores:hover{
+    border: #E97A2C 3px solid;
+    box-shadow:  0 21px 41px 0 #f5d18b;
+    transition: box-shadow 0.3s ease-in-out, border 0.3s ease-in-out;
+  }
+
   .Scores{
     display: flex;
     justify-content: center;

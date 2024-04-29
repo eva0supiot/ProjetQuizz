@@ -31,6 +31,7 @@ mat-nav-list {
     font-size: large;
     color: theme.$white;
     transition: 0.3s;
+    width: auto;
 
     &:hover {
       transform: scale(1.2);
