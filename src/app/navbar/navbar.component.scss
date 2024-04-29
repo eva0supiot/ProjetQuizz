@@ -1,5 +1,10 @@
 @use "theme";
 
+.conteneur{
+  display:flex;
+  justify-content: space-between;
+}
+
 nav {
   height: 80px;
   background: linear-gradient(to right, theme.$common-red, theme.$common-yellow);
@@ -38,3 +43,5 @@ mat-nav-list {
     }
   }
 }
+
+
