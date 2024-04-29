@@ -16,6 +16,8 @@ import { MajorUtilisateursComponent } from "majors/major-utilisateurs/major-util
 import { HttpClientModule } from "@angular/common/http"
 import { UtilisateursComponent } from "./utilisateurs/utilisateurs.component"
 import { UtilisateurDetailsComponent } from "./utilisateurs/utilisateur-details/utilisateur-details.component"
+import { CommonModule } from "@angular/common"
+import { QuizzComponent } from "./quizz/quizz.component"
 
 @NgModule({
   declarations: [
@@ -36,6 +38,8 @@ import { UtilisateurDetailsComponent } from "./utilisateurs/utilisateur-details/
     MatIconModule,
     MatButtonModule,
     HttpClientModule,
+    CommonModule,
+    QuizzComponent,
   ],
   providers: [],
   bootstrap: [AppComponent],

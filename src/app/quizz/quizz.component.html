@@ -12,19 +12,17 @@
           <p class="question-titre">
             {{ question.contenu }}
           </p>
-          <div class="réponses">
-            @for (reponse of reponses ; track reponse) {
-
-              @if (reponse.question.id == question.id) {
+          <div *ngFor="let reponse of reponses; trackBy: trackByFn" class="réponses">
+            @if (reponse.question.id == question.id) {
 
                 <label class="réponse_button">
 
-                  <input type="checkbox">
+                  <input type="checkbox" [(ngModel)]="selectedResponses[reponse.id].selected" >
                   <div class="checkmark"> </div>
-                  <div class="réponse_text">{{ reponse.contenu }}</div>
+                  <div class="réponse_text" >{{ reponse.contenu }}</div>
 
                 </label>
-              }
+
             }
           </div>
         </div>
