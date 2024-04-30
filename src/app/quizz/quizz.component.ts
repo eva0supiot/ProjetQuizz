@@ -35,9 +35,9 @@ export class QuizzComponent {
   reponses$: Observable<Reponse[]> = this.reponseService.findAll();
   reponses: Reponse[] = [];
 
-  selectedResponses: { [key: string]: { selected: boolean, numero: number } } = {};
+  selectedResponses: { [key: string]: { selected: boolean, numero: number|undefined } } = {};
 
-  comparedtoData: { [key: string]: { selected: boolean, numero: number } } = {};
+  comparedtoData: { [key: string]: { selected: boolean, numero: number|undefined } } = {};
 
   score : string = "" ;
 
@@ -57,7 +57,7 @@ export class QuizzComponent {
           this.reponses = data.filter(response => response.question.quizz.id === idquizz);
           // Initialisation des données du tableau une fois que les réponses sont chargées
           this.reponses.forEach(rep => {
-            this.selectedResponses[rep.id] = { selected: false, numero: rep.question.id };
+            this.selectedResponses[rep.id] = { selected: false, numero : rep.question.id };
             this.comparedtoData[rep.id] = { selected: rep.solution, numero: rep.question.id};
 
           });
@@ -71,11 +71,11 @@ export class QuizzComponent {
     const liste = Object.values(this.comparedtoData);
     const liste2 = Object.values(this.selectedResponses as { [key: string]: { selected: boolean, numero: number } });
 
-    const nombrequestion: number[] = Array.from({ length: liste[liste.length - 1].numero }, () => 1);
+    const nombrequestion: number[] = Array.from({ length: liste[liste.length - 1].numero! }, () => 1);
 
     for (const key in liste) {
       if (liste[key].selected !== liste2[key].selected) {
-        nombrequestion[liste[key].numero] = 0;
+        nombrequestion[liste[key].numero!] = 0;
       }
     }
 
