@@ -27,6 +27,7 @@ import { MatSnackBar } from "@angular/material/snack-bar"
 export class LoginComponent {
   utilisateurs$: Observable<Utilisateur[]> = this.utilisateurService.findAll();
   utilisateurs : Utilisateur [] = [];
+  private isLoggedInFlag: boolean = false;
 
   userForm = new FormGroup({
     pseudo: new FormControl('', [Validators.required]),
@@ -71,23 +72,32 @@ export class LoginComponent {
   }*/
   ngOnInit(): void {}
 
+  isLoggedIn(): boolean {
+    return this.isLoggedInFlag;
+  }
+
 
   connexion() {
     console.log(this.userForm)
+
     this.utilisateurs.forEach((user: Utilisateur) => {
       if(user.pseudo === this.userForm.value.pseudo && user.mdp === this.userForm.value.mdp) {
-        if(user.admin === true)
+        if(user.admin)
         {
-          this.router.navigate(["profil-admin"])
+          this.router.navigate(["profil-admin"], { queryParams: { username: user.pseudo } });
+        } else {
+          this.router.navigate(["profil"],  { queryParams: { username: user.pseudo } });
         }
-        else if(user.admin === false){
-          this.router.navigate(["profil"])
-        }
+        this.isLoggedInFlag = true;
       }
       else {
         this._snackBar.open("Vous n'etes pas qln qu'on connait", '', {duration: 1000} )
       }
 
     })
+  }
+
+  deconnexion(){
+    this.isLoggedInFlag = false;
   }
 }
