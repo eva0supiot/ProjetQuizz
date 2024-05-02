@@ -2,10 +2,11 @@
   <div class="InfoUser" *ngIf="utilisateur">
     <div class ="BoiteUser">
       <!--<img src="{{utilisateurs[0].pdp}}" >-->
-      <img class="PhotoProfil" src="./assets/PhotoProfil1.jpg" alt="bla">
+      <img class="PhotoProfil" src="./assets/PhotoProfil2.png" alt="bla">
       <h1 class="Pseudo">{{utilisateur.pseudo}}</h1>
       <label class="MotDePasse">Mot de passe : {{utilisateur.mdp}}</label><br>
       <label class="ScoresCumule">Scores cumulés : {{utilisateur.scores}}</label>
+      <button (click)="logout()">Déconnexion</button>
     </div>
     <div class="TabScores">
       <h1 class="Scores">Tableau des scores</h1>
@@ -30,7 +31,6 @@
         </tbody>
       </table>
     </div>
-    <button (click)="logout()">Déconnexion</button>
   </div>
 
 </body>
