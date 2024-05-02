@@ -35,56 +35,73 @@ export class QuizzComponent {
   reponses$: Observable<Reponse[]> = this.reponseService.findAll();
   reponses: Reponse[] = [];
 
-  selectedResponses: { [key: string]: { selected: boolean, numero: number|undefined } } = {};
+  reponsesJoueurs : { selected: boolean, idquestion: number|undefined }[] = [];
+  solutionsQuizz : { selected: boolean, idquestion: number|undefined }[] = [];
 
-  comparedtoData: { [key: string]: { selected: boolean, numero: number|undefined } } = {};
-
-  score : string = "" ;
-
-  trackByFn(index: number, reponses: any): number {
-    return reponses.id;
-  }
+  score : string | undefined = "" ;
 
   constructor(private quizzService: QuizzService, route: ActivatedRoute,private questionService : QuestionService, private reponseService : ReponseService , private router: Router, private ReponseauquizzService: ReponseAuQuizzService
   ) {
-    this.questionService.findAll().subscribe((data)=> this.questions = data)
-    quizzService.findById(route.snapshot.params["id"]).subscribe((quizz) => { this.quizz = quizz;
+    this.questionService.findAll().subscribe((data)=> {
+      const idquizz = this.quizz ? this.quizz.id : 0;
+      this.questions = data.filter(question => question.quizz.id == idquizz);
+    })
+
+    quizzService.findById(route.snapshot.params["id"]).subscribe((quizz) => {
+
+      this.quizz = quizz;
+
       if (this.quizz && this.quizz.id != null) {
+
         this.reponseService.findAll().subscribe((data)=> {
 
           const idquizz = this.quizz ? this.quizz.id : 0;
 
-          this.reponses = data.filter(response => response.question.quizz.id === idquizz);
-          // Initialisation des données du tableau une fois que les réponses sont chargées
-          this.reponses.forEach(rep => {
-            this.selectedResponses[rep.id] = { selected: false, numero : rep.question.id };
-            this.comparedtoData[rep.id] = { selected: rep.solution, numero: rep.question.id};
+          this.reponses = data.filter(response => response.question.quizz.id == idquizz);
 
+          let i = 0;
+
+          this.reponses.forEach(rep => {
+
+            this.reponsesJoueurs.push({ selected: false, idquestion: rep.question.id });
+            this.solutionsQuizz.push({ selected: rep.solution, idquestion: rep.question.id });
+
+            i=i+1;
           });
         });
       }
     });
   }
 
+  nombrequestion: { idquestions : number, score : number }[] = [];
 
   Compared():string {
-    const liste = Object.values(this.comparedtoData);
-    const liste2 = Object.values(this.selectedResponses as { [key: string]: { selected: boolean, numero: number } });
 
-    const nombrequestion: number[] = Array.from({ length: liste[liste.length - 1].numero! }, () => 1);
+    for (let i = 0; i < this.questions.length; i++) {
+      this.nombrequestion.push({ score: 1, idquestions: this.questions[i].id! });
+    }
 
-    for (const key in liste) {
-      if (liste[key].selected !== liste2[key].selected) {
-        nombrequestion[liste[key].numero!] = 0;
+    console.log("nombrequestion    " +this.nombrequestion);
+
+    for (let i = 0; i < this.reponsesJoueurs.length; i++) {
+
+      if (this.reponsesJoueurs[i].selected !== this.solutionsQuizz[i].selected) {
+
+        this.nombrequestion.forEach(element => {
+          if (element.idquestions === this.reponsesJoueurs[i].idquestion) {
+            element.score = 0;
+          }
+        });
       }
     }
 
-    const somme: number = nombrequestion.reduce((total, nombre) => total + nombre, 0);
+    console.log("nombrequestion    " +this.nombrequestion);
 
-    return somme+ "/"+nombrequestion.length;
-  }
+    const somme: number = this.nombrequestion.reduce((total, score) => total + score.score, 0);
 
-  ngOnInit(): void {
+    console.log("score  " + somme+ "/"+(this.questions.length));
+
+    return somme+ "/"+(this.questions.length);
   }
 
   sendData() {
@@ -92,8 +109,8 @@ export class QuizzComponent {
 
     this.score = this.Compared();
 
-    const selectedData = { selectedResponses: Object.values(this.selectedResponses),
-      quizzId: quizzId,
+    const selectedData = { selectedResponses: this.reponsesJoueurs,
+      quizz: quizzId,
       score : this.score };
 
     this.ReponseauquizzService.setData(selectedData);

@@ -12,23 +12,29 @@
           <p class="question-titre">
             {{ question.contenu }}
           </p>
-          <div *ngFor="let reponse of reponses; trackBy: trackByFn" class="réponses">
+
+          <div *ngFor="let reponse of reponses; let i = index" class="réponses">
             @if (reponse.question.id == question.id) {
 
-                <label class="réponse_button">
+              <label class="réponse_button">
 
-                  <input type="checkbox" [(ngModel)]="selectedResponses[reponse.id].selected" >
-                  <div class="checkmark"> </div>
-                  <div class="réponse_text" >{{ reponse.contenu }}</div>
+                <input type="checkbox" [(ngModel)]="reponsesJoueurs[i].selected" >
+                <div class="checkmark"> </div>
+                <div class="réponse_text" >{{ reponse.contenu }}</div>
 
-                </label>
-
+              </label>
             }
           </div>
+
         </div>
       }
     }
   </div>
+
+  @for (reponse of nombrequestion; track reponse)
+  {
+    <div class="réponse_text" >{{ reponse }}</div>
+  }
 
   <button (click)="sendData()" > Valider </button>
 

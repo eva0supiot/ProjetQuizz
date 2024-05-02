@@ -33,6 +33,10 @@ export class UtilisateurService {
     return this.http.delete(`${this.utilisateursUrl}/${utilisateur.id}`)
   }
 
+  saveScore(id: number, newScore: string): Observable<any> {
+    const headers = { 'Content-Type': 'application/json' };
+    return this.http.put(`${this.utilisateursUrl}/${id}/scores`, { scores: newScore });
+  }
 
 
   /*addCourseToUtilisateur(utilisateur: Utilisateur, course: Course) {
