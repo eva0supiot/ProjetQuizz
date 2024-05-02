@@ -33,8 +33,17 @@
   </div>
 </form>
 
-<form class="form1">
+<form [formGroup]="quizzForm" (ngSubmit)="onSubmit()" class="form1">
   <h1>Ajout Quizz</h1>
+  <div>
+    <label for="titre">Titre: </label>
+    <input class="InfoSaisie" id="titre" name="tire" formControlName="titre" required>
+    <label for="nbQuestion">Nombre de question: </label>
+    <input class="InfoSaisie" id="nbQuestion" name="nbQuestion" type="number" formControlName="nbQuestion" required>
+    <button type="button" (click)="generateFields()">Continuer</button>
+  </div>
+  <div id="questions-container"></div>
+
 </form>
 
 <form class="form1">

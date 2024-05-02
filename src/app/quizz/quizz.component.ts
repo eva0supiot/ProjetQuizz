@@ -56,11 +56,11 @@ export class QuizzComponent {
 
           this.reponses = data.filter(response => response.question.quizz.id === idquizz);
           // Initialisation des données du tableau une fois que les réponses sont chargées
-          this.reponses.forEach(rep => {
+          /*this.reponses.forEach(rep => {
             this.selectedResponses[rep.id] = { selected: false, numero: rep.question.id };
             this.comparedtoData[rep.id] = { selected: rep.solution, numero: rep.question.id};
 
-          });
+          });*/
         });
       }
     });

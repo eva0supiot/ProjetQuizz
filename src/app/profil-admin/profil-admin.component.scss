@@ -47,6 +47,49 @@
       display: inline;
       margin-right: 20px;
     }
+
+    #questions-container {
+      padding: 20px;
+      background-color: #f8f8f8;
+      display: flex;
+      flex-direction: column;
+      width: 950px;
+      height: auto;
+    }
+
+    .question-block {
+      padding: 10px;
+      margin-bottom: 20px;
+      border: 1px solid #ddd;
+      background-color: #ffffff;
+      border-radius: 5px;
+    }
+
+    .question-block input[type="text"],
+    .question-block input[type="radio"] {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    .responses-container {
+      margin-top: 20px;
+      margin-right: 5px;
+    }
+
+    .responses-container label {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    .question-block input[type="radio"] {
+      margin-left: 10px;
+      margin-right: 5px;
+      vertical-align: middle;
+    }
+
   }
 
 }
