@@ -9,7 +9,7 @@ import {MatCard, MatCardHeader, MatCardSmImage, MatCardTitle, MatCardTitleGroup}
 import { Utilisateur } from "../models/utilisateur.model"
 import { QuizzService } from "../services/quizz.service"
 import { UtilisateurService } from "../services/utilisateur.service"
-
+import { AuthService } from '../services/auth.service';
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -19,42 +19,22 @@ import { UtilisateurService } from "../services/utilisateur.service"
 })
 export class ProfilComponent {
   utilisateurs$: Observable<Utilisateur[]> = this.utilisateurService.findAll();
-  utilisateurs : Utilisateur [] = [];
+  utilisateur: Utilisateur | null = null;
 
-
-  // il existe deux facons de faire des formulaires en angular : ici les reactives forms (sinon c'est ngForm)
-  /* myForm = new FormGroup({
-    name: new FormControl('', [Validators.required]),
-    mdp: new FormControl('', [Validators.required]),
-    score: new FormControl('', [Validators.required]),
-    imageName: new FormControl('', Validators.required)
-  });*/
-
-  constructor(private _route: ActivatedRoute, private utilisateurService: UtilisateurService, private router: Router) {
-    this.utilisateurService.findAll().subscribe((data)=> this.utilisateurs = data)
-
-  }
-/*
-  // cette méthode mock le post au back
-  postUser(user : User) {
-    this.users.push(user);
+  constructor(private _route: ActivatedRoute, private utilisateurService: UtilisateurService, private router: Router, private authService: AuthService) {
   }
 
-  // cette méthode sert à faire comme si j'appelais mon API et qu'elle me retournais deux utilisateurs
-  mockUserData() : Observable<User[]> {
-    // @ts-ignore
-    const users : User[] = [{name: "Dorian", mdp: "123456", score: "15", imageName: "PhotoProfil1"}]
-    return of(users)
+  ngOnInit() {
+    this.authService.currentUser.subscribe(user => {
+      this.utilisateur = user;
+    });
   }
-}
+
+  logout() {
+    this.authService.logout();
+    // Redirigez l'utilisateur vers la page de connexion ou d'accueil après la déconnexion
+    this.router.navigate(['/login']);
+  }
 
 
-// a mettre dans un autre fichier
-export interface User {
-  name: string,
-  mdp: string,
-  score: string,
-  imageName : string
-}*/
-  ngOnInit(): void {}
 }

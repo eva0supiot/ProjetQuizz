@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from "@angular/core"
 import { MatButton } from "@angular/material/button"
 import { MatRadioButton, MatRadioGroup } from "@angular/material/radio"
 import { FormControl, FormControlName, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms"
@@ -9,6 +9,7 @@ import { Utilisateur } from "../models/utilisateur.model"
 import { UtilisateurService } from "../services/utilisateur.service"
 import { inputNames } from "@angular/cdk/schematics"
 import { MatSnackBar } from "@angular/material/snack-bar"
+import { AuthService } from "../services/auth.service";
 
 @Component({
   selector: 'login',
@@ -34,60 +35,25 @@ export class LoginComponent {
   })
 
 
-  // il existe deux facons de faire des formulaires en angular : ici les reactives forms (sinon c'est ngForm)
-  /* myForm = new FormGroup({
-    name: new FormControl('', [Validators.required]),
-    mdp: new FormControl('', [Validators.required]),
-    score: new FormControl('', [Validators.required]),
-    imageName: new FormControl('', Validators.required)
-  });*/
-
   constructor(private _route: ActivatedRoute, private utilisateurService: UtilisateurService, private router: Router,
-              private _snackBar: MatSnackBar) {
+              private _snackBar: MatSnackBar, private authService: AuthService) {
     this.utilisateurService.findAll().subscribe((data)=> this.utilisateurs = data)
 
   }
-  /*
-    // cette méthode mock le post au back
-    postUser(user : User) {
-      this.users.push(user);
-    }
 
-    // cette méthode sert à faire comme si j'appelais mon API et qu'elle me retournais deux utilisateurs
-    mockUserData() : Observable<User[]> {
-      // @ts-ignore
-      const users : User[] = [{name: "Dorian", mdp: "123456", score: "15", imageName: "PhotoProfil1"}]
-      return of(users)
-    }
-  }
-
-
-  // a mettre dans un autre fichier
-  export interface User {
-    name: string,
-    mdp: string,
-    score: string,
-    imageName : string
-  }*/
-  ngOnInit(): void {}
 
 
   connexion() {
-    console.log(this.userForm)
-    this.utilisateurs.forEach((user: Utilisateur) => {
-      if(user.pseudo === this.userForm.value.pseudo && user.mdp === this.userForm.value.mdp) {
-        if(user.admin === true)
-        {
-          this.router.navigate(["profil-admin"])
-        }
-        else if(user.admin === false){
-          this.router.navigate(["profil"])
-        }
+    const { pseudo, mdp } = this.userForm.value;
+    this.utilisateurService.findAll().subscribe(users => {
+      const user = users.find(u => u.pseudo === pseudo && u.mdp === mdp);
+      if (user) {
+        this.authService.login(user);
+        this.router.navigate([user.admin ? 'profil-admin' : 'profil'], { queryParams: { username: user.pseudo } });
+      } else {
+        this._snackBar.open("Identifiants incorrects", '', { duration: 3000 });
       }
-      else {
-        this._snackBar.open("Vous n'etes pas qln qu'on connait", '', {duration: 1000} )
-      }
-
-    })
+    });
   }
+
 }

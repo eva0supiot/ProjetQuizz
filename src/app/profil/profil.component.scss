@@ -4,7 +4,7 @@
 
   .InfoUser{
     display: flex;
-    justify-content: left;
+    justify-content: center;
     align-items: center;
     height: 100%;
   }
@@ -13,7 +13,7 @@
     background-image: url("/assets/boite_profil_fond.png");
     //background-color: #F7BC49;
     border: #F7BC49 3px solid;
-    padding: 120px 120px;
+    padding: 80px 120px;
     border-radius: 20px;
     position: relative;
     margin: 0 80px;
@@ -86,5 +86,17 @@
 
   label{
     margin-left: 20px;
+  }
+
+  button{
+    margin-top: 40px;
+    background-color: white;
+    border: 2px solid #E97A2C;
+    padding: 10px 20px;
+    border-radius: 20px;
+  }
+  button:hover{
+    box-shadow:  0 11px 21px 0 #f5d18b;
+    transition: box-shadow 0.3s ease-in-out, border 0.3s ease-in-out;
   }
 }

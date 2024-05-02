@@ -15,16 +15,19 @@ import { ProfilComponent } from "profil/profil.component"
 import { QuizzComponent } from "./quizz/quizz.component"
 import { ProfilAdminComponent } from "profil-admin/profil-admin.component"
 import { ValidationQuizzComponent } from "validation-quizz/validation-quizz.component"
+import { AuthGuard } from "./services/auth.guard"
+import { from } from "rxjs"
+
 
 const routes: Routes = [
   { path: "", component: HomeComponent },
-  { path: "", redirectTo: '/quizz/:id', pathMatch: 'full' },
-  { path: "quizz/:id", component: QuizzComponent },
-  { path: "validation-quizz", component: ValidationQuizzComponent },
-  { path: "login", component: LoginComponent },
-  { path: "inscription", component: InscriptionComponent },
-  { path: "profil", component: ProfilComponent },
-  { path: "profil-admin", component: ProfilAdminComponent },
+  { path: "", redirectTo: '/quizz/:id', pathMatch: 'full'},
+  { path: "quizz/:id", component: QuizzComponent},
+  { path: "validation-quizz", component: ValidationQuizzComponent},
+  { path: "login", component: LoginComponent},
+  { path: "inscription", component: InscriptionComponent},
+  { path: "profil", component: ProfilComponent, canActivate: [AuthGuard] },
+  { path: "profil-admin", component: ProfilAdminComponent, canActivate: [AuthGuard] },
   {
     path: "etudiants",
     component: UtilisateursComponent,

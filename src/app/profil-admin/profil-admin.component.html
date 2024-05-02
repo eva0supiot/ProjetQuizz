@@ -8,11 +8,11 @@
     </div>
     <div class="Rb">
       <mat-radio-group aria-label="Select an option" (change)="onRadioButtonChange($event)" formControlName="imageName">
-        <mat-radio-button value="PhotoProfil1" class="Rb"><img src="assets/PhotoProfil1.jpg" height="100px"/></mat-radio-button>
-        <mat-radio-button value="PhotoProfil1" class="Rb"><img src="assets/PhotoProfil1.jpg" height="100px"/></mat-radio-button>
-        <mat-radio-button value="PhotoProfil1" class="Rb"><img src="assets/PhotoProfil1.jpg" height="100px"/></mat-radio-button>
-        <mat-radio-button value="PhotoProfil1" class="Rb"><img src="assets/PhotoProfil1.jpg" height="100px"/></mat-radio-button>
-        <mat-radio-button value="PhotoProfil1" class="Rb"><img src="assets/PhotoProfil1.jpg" height="100px"/></mat-radio-button>
+        <mat-radio-button value="PhotoProfil2" class="Rb"><img src="assets/PhotoProfil2.png" height="100px"/></mat-radio-button>
+        <mat-radio-button value="PhotoProfil3" class="Rb"><img src="assets/PhotoProfil3.png" height="100px"/></mat-radio-button>
+        <mat-radio-button value="PhotoProfil4" class="Rb"><img src="assets/PhotoProfil4.png" height="100px"/></mat-radio-button>
+        <mat-radio-button value="PhotoProfil5" class="Rb"><img src="assets/PhotoProfil5.png" height="100px"/></mat-radio-button>
+        <mat-radio-button value="PhotoProfil6" class="Rb"><img src="assets/PhotoProfil6.png" height="100px"/></mat-radio-button>
       </mat-radio-group>
     </div>
     <button type="button" (click)="AjouterUser()">Ajouter</button>
@@ -33,8 +33,17 @@
   </div>
 </form>
 
-<form class="form1">
+<form [formGroup]="quizzForm" (ngSubmit)="onSubmit()" class="form1">
   <h1>Ajout Quizz</h1>
+  <div>
+    <label for="titre">Titre: </label>
+    <input class="InfoSaisie" id="titre" name="tire" formControlName="titre" required>
+    <label for="nbQuestion">Nombre de question: </label>
+    <input class="InfoSaisie" id="nbQuestion" name="nbQuestion" type="number" formControlName="nbQuestion" required>
+    <button type="button" (click)="generateFields()">Continuer</button>
+  </div>
+  <div id="questions-container"></div>
+
 </form>
 
 <form class="form1">

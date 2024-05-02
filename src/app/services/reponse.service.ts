@@ -15,4 +15,16 @@ export class ReponseService {
   findAll(): Observable<Reponse[]> {
     return this.http.get<Reponse[]>(this.reponsesUrl)
   }
+
+  update(id: number, reponse: Reponse): Observable<Reponse> {
+    return this.http.post<Reponse>(`${this.reponsesUrl}/${id}`, reponse)
+  }
+
+  add(reponse: Reponse): Observable<Reponse> {
+    return this.http.post<Reponse>(this.reponsesUrl, reponse)
+  }
+
+  delete(reponse: Reponse) {
+    return this.http.delete(`${this.reponsesUrl}/${reponse.id}`)
+  }
 }
