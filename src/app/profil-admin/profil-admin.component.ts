@@ -36,18 +36,16 @@ import { MatSnackBar } from "@angular/material/snack-bar"
   styleUrl: './profil-admin.component.scss'
 })
 export class ProfilAdminComponent {
-  quizzes$: Observable<Quizz[]> = this.quizzService.findAll();
-  questions$: Observable<Question[]> = this.questionService.findAll();
-  utilisateurs$: Observable<Utilisateur[]> = this.utilisateurService.findAll();
 
   utilisateurs: Utilisateur [] = []
   quizzes: Quizz[] = [];
   questions: Question[] = [];
 
-  nbQuestions: number = 0;
 
   userForm: FormGroup = new FormGroup({});
   quizzForm: FormGroup = new FormGroup({});
+
+  currentQuiz: Quizz | null = null;
 
 
 
@@ -58,13 +56,6 @@ export class ProfilAdminComponent {
     this.initForm();
 
   }
-
-
-  // il existe deux facons de faire des formulaires en angular : ici les reactives forms (sinon c'est ngForm)
-  myForm = new FormGroup({
-    name: new FormControl('', [Validators.required]),
-    imageName: new FormControl('', Validators.required)
-  });
 
   initForm() {
     this.userForm = this.fb.group({
@@ -204,12 +195,12 @@ export class ProfilAdminComponent {
         //this._snackBar.open('question 1 :', 'Fermer', { duration: 5000 });
         this.quizzService.add(newQuizz).subscribe(
           response => {
-            this.quizzes.push(response);
+            this.currentQuiz = response;
             console.log('Quizz ajouté avec succès', response);
             //const quizId = response.id;
             //window.location.reload();
-            this._snackBar.open('okokok1', 'Fermer', { duration: 5000 });
-            this.addQuestions(response);  // Méthode dédiée pour ajouter des questions
+            //this._snackBar.open('okokok1', 'Fermer', { duration: 5000 });
+            this.addQuestions(this.currentQuiz);  // Méthode dédiée pour ajouter des questions
           },
           error => {
             console.error('Erreur lors de l\'ajout du quizz', error);
@@ -223,19 +214,21 @@ export class ProfilAdminComponent {
   }
 
   addQuestions(quiz: Quizz) {
-    this._snackBar.open('okokok0', 'Fermer', { duration: 5000 });
+    this._snackBar.open('okokok0'+quiz.id, 'Fermer', { duration: 5000 });
     const numberOfQuestions = parseInt((document.getElementById('nbQuestion') as HTMLInputElement).value);
     for (let i = 1; i <= numberOfQuestions; i++) {
-      const questionValue = (document.getElementById('question' + i) as HTMLInputElement).value;
-      const newQuestion: Question = {
+      let questionValue = (document.getElementById('question' + i) as HTMLInputElement).value;
+      let newQuestion: Question
+      newQuestion = {
         contenu: questionValue,
-        quizz: quiz
-      };
+        image: null,
+        quizz: quiz,
+      }
 
 
       this.questionService.add(newQuestion).subscribe(
         res => {
-          //this._snackBar.open('okokok1', 'Fermer', { duration: 5000 });
+          this._snackBar.open('Ajouter!!!!!', 'Fermer', { duration: 5000 });
           console.log('Question ajoutée avec succès', res)
         },
         err => {
