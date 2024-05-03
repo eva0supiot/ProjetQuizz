@@ -1,0 +1,63 @@
+@use "theme";
+
+:host {
+  display: flex;
+  margin: 25px;
+  flex-direction: column;
+  align-items: center;
+
+  .title {
+    align-content: center;
+    align-items: center;
+    display: flex;
+    color: theme.$common-red;
+    font-size: xx-large;
+    margin-top: 80px;
+    margin-bottom: 20px;
+  }
+
+  .dodo{
+    height: 10%;
+    width: 10%;
+    margin-bottom: 50px;
+  }
+
+  table {
+    width: 50%;
+    border-collapse: collapse;
+    border: 2px solid #D41B00;
+    margin-bottom: 100px;
+  }
+
+  /* Style de l'en-tête du tableau */
+  th {
+    background-color: #D41B00;
+    border: 1px solid #D41B00;
+    padding: 8px;
+    text-align: center;
+    font-size: x-large;
+    color : white;
+  }
+
+  /* Style des cellules du tableau */
+  td {
+    border: 1px solid #D41B00;
+    padding: 8px;
+    text-align: center;
+    font-size: large;
+    color :white;
+  }
+
+  tr{
+    background-color: #EE8E35;
+  }
+  /* Style des lignes impaires du tableau */
+  tr:nth-child(odd) {
+    background-color: #E97A2C;
+  }
+
+  /* Style des lignes au survol de la souris */
+  tr:hover {
+    background-color: #FAC74F;
+  }
+}

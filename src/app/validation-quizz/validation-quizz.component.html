@@ -1,6 +1,14 @@
 
-<span class="title">quizz n°{{receivedData.quizz}}</span>
+<span class="title">Quizz n°{{receivedData.quizz}}</span>
 
-<span class="title">le score est de {{receivedData.score}}</span>
+<img class="dodo1" src="assets/king%20dodo.gif" alt="dodo" />
+
+<span class="title">Votre score est de {{receivedData.score}}</span>
 
 <img class="dodo" src="assets/fireworks-joypixels.gif" alt="dodo" />
+
+<div class="button-container">
+    <a routerLink="/quizz/{{receivedData.quizz}}" ><button > Rejouer </button></a>
+    <a routerLink="/quizz/{{receivedData.quizz}}/scores" ><button > Scores </button></a>
+    <a routerLink="/" ><button > Menu Principal </button></a>
+</div>

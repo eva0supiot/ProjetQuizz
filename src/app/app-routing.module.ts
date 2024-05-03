@@ -17,12 +17,14 @@ import { ProfilAdminComponent } from "profil-admin/profil-admin.component"
 import { ValidationQuizzComponent } from "validation-quizz/validation-quizz.component"
 import { AuthGuard } from "./services/auth.guard"
 import { from } from "rxjs"
+import { ScoresQuizzComponent } from "./scores-quizz/scores-quizz.component"
 
 
 const routes: Routes = [
   { path: "", component: HomeComponent },
   { path: "", redirectTo: '/quizz/:id', pathMatch: 'full'},
   { path: "quizz/:id", component: QuizzComponent},
+  { path: "quizz/:id/scores", component: ScoresQuizzComponent},
   { path: "validation-quizz", component: ValidationQuizzComponent},
   { path: "login", component: LoginComponent},
   { path: "inscription", component: InscriptionComponent},

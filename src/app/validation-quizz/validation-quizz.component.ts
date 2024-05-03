@@ -7,14 +7,15 @@ import { Reponse } from "models/reponse.model"
 import { ReponseService } from "../services/reponse.service"
 import { Quizz } from "../models/quizz.model"
 import { Observable } from "rxjs"
-import { ActivatedRoute } from "@angular/router"
+import { ActivatedRoute, RouterLink } from "@angular/router"
 import { Utilisateur } from "../models/utilisateur.model"
 import { UtilisateurService } from "../services/utilisateur.service"
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'validation-quizz',
   standalone: true,
-  imports: [CommonModule,],
+  imports: [CommonModule, RouterLink],
   templateUrl: './validation-quizz.component.html',
   styleUrl: './validation-quizz.component.scss'
 })
@@ -35,7 +36,9 @@ export class ValidationQuizzComponent implements OnInit {
   utilisateurs$: Observable<Utilisateur[]> = this.utilisateurService.findAll();
   utilisateurs : Utilisateur [] = [];
 
-  constructor(private ReponseauquizzService: ReponseAuQuizzService,private questionService : QuestionService, private reponseService : ReponseService,route: ActivatedRoute,private utilisateurService: UtilisateurService) {
+  utilisateur: Utilisateur | null = null;
+
+  constructor(private ReponseauquizzService: ReponseAuQuizzService,private questionService : QuestionService, private reponseService : ReponseService,route: ActivatedRoute,private utilisateurService: UtilisateurService, private authService: AuthService) {
     this.questionService.findAll().subscribe((data)=> this.questions = data)
     this.utilisateurService.findAll().subscribe((data)=> this.utilisateurs = data)
     this.reponseService.findAll().subscribe((data)=> {
@@ -43,20 +46,24 @@ export class ValidationQuizzComponent implements OnInit {
       this.reponses.forEach(rep => {
       });
     });
-    this.idUtilisateur = 1;
 
   }
 
   ngOnInit(): void {
     this.receivedData = this.ReponseauquizzService.getData();
 
+    this.idUtilisateur = -1;
+
+    this.authService.currentUser.subscribe(user => {
+      this.utilisateur = user;
+      this.idUtilisateur = Number(user?.id);
+    });
+
     if (this.receivedData && typeof this.receivedData.score !== 'undefined') {
       this.scoreAjoute = this.receivedData.quizz +":"+ this.receivedData.score;
     } else {
       this.scoreAjoute = "";
     }
-
-    this.idUtilisateur = 1;
 
     this.utilisateurService.saveScore(this.idUtilisateur!,this.scoreAjoute).subscribe(
       response => {
