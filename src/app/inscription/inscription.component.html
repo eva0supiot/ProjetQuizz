@@ -1,9 +1,9 @@
 <body>
-<form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+<form [formGroup]="userForm" (ngSubmit)="onSubmit()">
   <h1>Inscription</h1>
   <div>
-    <label for="name">Pseudo:</label>
-    <input class="InfoSaisie" id="name" formControlName="name">
+    <label for="pseudo">Pseudo:</label>
+    <input class="InfoSaisie" id="pseudo" formControlName="pseudo">
     <label for="mdp">Mot de passe:</label>
     <input class="InfoSaisie" id="mdp" formControlName="mdp">
   </div>
@@ -16,7 +16,7 @@
       <mat-radio-button value="PhotoProfil1" class="Rb"><img src="assets/PhotoProfil6.png" height="100px"/></mat-radio-button>
     </mat-radio-group>
   </div>
-  <button mat-raised-button type="submit" [disabled]="myForm.invalid">S'incrire !</button>
+  <button mat-raised-button type="submit">S'incrire !</button>
 </form>
 
 
