@@ -197,7 +197,6 @@ export class ProfilAdminComponent {
           response => {
             this.currentQuiz = response;
             console.log('Quizz ajouté avec succès', response);
-            //const quizId = response.id;
             //window.location.reload();
             //this._snackBar.open('okokok1', 'Fermer', { duration: 5000 });
             this.addQuestions(this.currentQuiz);  // Méthode dédiée pour ajouter des questions
@@ -214,28 +213,30 @@ export class ProfilAdminComponent {
   }
 
   addQuestions(quiz: Quizz) {
-    this._snackBar.open('okokok0'+quiz.id, 'Fermer', { duration: 5000 });
-    const numberOfQuestions = parseInt((document.getElementById('nbQuestion') as HTMLInputElement).value);
-    for (let i = 1; i <= numberOfQuestions; i++) {
-      let questionValue = (document.getElementById('question' + i) as HTMLInputElement).value;
-      let newQuestion: Question
-      newQuestion = {
-        contenu: questionValue,
-        image: null,
-        quizz: quiz,
-      }
-
-
-      this.questionService.add(newQuestion).subscribe(
-        res => {
-          this._snackBar.open('Ajouter!!!!!', 'Fermer', { duration: 5000 });
-          console.log('Question ajoutée avec succès', res)
-        },
-        err => {
-          //this._snackBar.open('okokok2', 'Fermer', { duration: 5000 });
-          console.error('Erreur lors de l\'ajout de la question', err)
+    if (quiz) {
+      this._snackBar.open('okokok0' + quiz.id, 'Fermer', { duration: 5000 });
+      const numberOfQuestions = parseInt((document.getElementById('nbQuestion') as HTMLInputElement).value);
+      for (let i = 1; i <= numberOfQuestions; i++) {
+        let questionValue = (document.getElementById('question' + i) as HTMLInputElement).value;
+        let newQuestion: Question
+        newQuestion = {
+          contenu: questionValue,
+          image: null,
+          quizz: quiz,
         }
-      );
+
+
+        this.questionService.add(newQuestion).subscribe(
+          res => {
+            this._snackBar.open('Ajouter!!!!!', 'Fermer', { duration: 5000 });
+            console.log('Question ajoutée avec succès', res)
+          },
+          err => {
+            //this._snackBar.open('okokok2', 'Fermer', { duration: 5000 });
+            console.error('Erreur lors de l\'ajout de la question', err)
+          }
+        );
+      }
     }
   }
 
