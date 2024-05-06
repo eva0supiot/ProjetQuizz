@@ -41,6 +41,7 @@ export class ProfilAdminComponent {
   utilisateurs: Utilisateur [] = []
   quizzes: Quizz[] = [];
   questions: Question[] = [];
+  reponses: Reponse[] = [];
 
 
   userForm: FormGroup = new FormGroup({});
@@ -288,11 +289,49 @@ export class ProfilAdminComponent {
     return new Promise(resolve => setTimeout(resolve, milliseconds));
   }*/
 
-  SupprimerQuizz(Quizz: any) {
-    this.quizzes.forEach((quizz: Quizz) => {
+  SupprimerQuizz(quiz: Quizz) {
+      this.questions.forEach((question: Question) => {
+        if(quiz.id === question.quizz.id)
+        {
+          this.reponses.forEach((rep: Reponse) => {
+            if(question.id === rep.question.id)
+            {
+              this.reponseService.delete(rep).subscribe(
+                response => {
+                  this.reponses = this.reponses.filter(r => r.id !== rep.id);
+                  console.log('Réponse supprimé avec succès', response);
+                },
+                error => {
+                  console.error('Erreur lors de la suppression de la reponse', error);
+                }
+              );
+            }
+
+          })
+          this.questionService.delete(question).subscribe(
+            response => {
+              this.questions = this.questions.filter(ques => ques.id !== question.id);
+              console.log('Question supprimé avec succès', response);
+            },
+            error => {
+              console.error('Erreur lors de la suppression de la question', error);
+            }
+          );
+        }
 
 
-    })
+      })
+    this.quizzService.delete(quiz).subscribe(
+      response => {
+        this.quizzes = this.quizzes.filter(q => q.id !== quiz.id);
+        this._snackBar.open('Quiz supprimé', 'Fermer', { duration: 5000 });
+
+        console.log('Quiz supprimé avec succès', response);
+      },
+      error => {
+        console.error('Erreur lors de la suppression du Quiz', error);
+      }
+    );
   }
 }
 
