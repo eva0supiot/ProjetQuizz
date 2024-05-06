@@ -20,7 +20,8 @@ import { QuestionService } from "../services/question.service"
 import { Utilisateur } from "../models/utilisateur.model"
 import { UtilisateurService } from "../services/utilisateur.service"
 import { MatSnackBar } from "@angular/material/snack-bar"
-
+import { Reponse } from "../models/reponse.model"
+import { ReponseService } from "../services/reponse.service"
 
 @Component({
   selector: 'profil-admin',
@@ -46,10 +47,11 @@ export class ProfilAdminComponent {
   quizzForm: FormGroup = new FormGroup({});
 
   currentQuiz: Quizz | null = null;
+  currentQuestion : Question | null = null;
 
 
 
-  constructor(private _route: ActivatedRoute, private utilisateurService: UtilisateurService, private quizzService: QuizzService, private questionService: QuestionService, private router: Router, private fb: FormBuilder, private fb2: FormBuilder, private _snackBar: MatSnackBar) {
+  constructor(private _route: ActivatedRoute, private utilisateurService: UtilisateurService, private quizzService: QuizzService, private questionService: QuestionService, private reponseService: ReponseService, private router: Router, private fb: FormBuilder, private fb2: FormBuilder, private _snackBar: MatSnackBar) {
     this.utilisateurService.findAll().subscribe((data) => this.utilisateurs = data)
     this.quizzService.findAll().subscribe((data) => this.quizzes = data)
     this.questionService.findAll().subscribe((data) => this.questions = data)
@@ -152,14 +154,15 @@ export class ProfilAdminComponent {
           for (let j = 1; j <= 4; j++) {
             const reponseInput = document.createElement('input');
             reponseInput.type = 'text';
-            reponseInput.id = 'reponse' + j + '-' + i;
-            reponseInput.name = 'reponse' + j + '-' + i;
+            reponseInput.id = 'reponse' + j + '-' + (i + 1);
+            reponseInput.name = 'reponse' + j + '-' + (i + 1);
             reponseInput.placeholder = 'Entrez votre réponse ' + j;
 
             const radioButton = document.createElement('input');
             radioButton.type = 'radio';
-            radioButton.name = 'correct-answer-' + i; // Même nom pour grouper les boutons radio
-            radioButton.value = 'reponse' + j + '-' + i;
+            radioButton.id = 'correct-answer-' + j + '-' + (i+1);
+            radioButton.name = 'correct-answer-' +(i + 1); // Même nom pour grouper les boutons radio
+            radioButton.value = 'reponse' + j + '-' + (i + 1);
 
             responsesDiv.appendChild(reponseInput);
             responsesDiv.appendChild(radioButton);
@@ -179,27 +182,22 @@ export class ProfilAdminComponent {
   }
 
   onSubmit() {
-    //this._snackBar.open('question 1 :'+this.questions.length, 'Fermer', { duration: 5000 });
     if (this.quizzForm.valid) {
-      //this._snackBar.open('question 1 :', 'Fermer', { duration: 5000 });
       console.log(this.quizzForm.value);
       const TitreExist = this.quizzes.some(quiz => quiz.titre === this.quizzForm.value.titre);
-      //this._snackBar.open('question 1 :'+TitreExist, 'Fermer', { duration: 5000 });
-      if(TitreExist)
-      {
-        //this._snackBar.open('question 1 :', 'Fermer', { duration: 5000 });
-
-      }
-      else{
+      if (TitreExist) {
+        // Traitement en cas de titre existant
+      } else {
         const newQuizz: Quizz = this.quizzForm.value;
-        //this._snackBar.open('question 1 :', 'Fermer', { duration: 5000 });
         this.quizzService.add(newQuizz).subscribe(
           response => {
-            this.currentQuiz = response;
             console.log('Quizz ajouté avec succès', response);
-            //window.location.reload();
-            //this._snackBar.open('okokok1', 'Fermer', { duration: 5000 });
-            this.addQuestions(this.currentQuiz);  // Méthode dédiée pour ajouter des questions
+            this.currentQuiz = response;
+            this.processQuestions(this.currentQuiz).then(() => {
+              console.log('Toutes les questions et réponses ont été ajoutées.');
+            }).catch(err => {
+              console.error('Erreur lors de l\'ajout des questions et réponses', err);
+            });
           },
           error => {
             console.error('Erreur lors de l\'ajout du quizz', error);
@@ -212,33 +210,83 @@ export class ProfilAdminComponent {
     }
   }
 
-  addQuestions(quiz: Quizz) {
-    if (quiz) {
-      this._snackBar.open('okokok0' + quiz.id, 'Fermer', { duration: 5000 });
-      const numberOfQuestions = parseInt((document.getElementById('nbQuestion') as HTMLInputElement).value);
-      for (let i = 1; i <= numberOfQuestions; i++) {
-        let questionValue = (document.getElementById('question' + i) as HTMLInputElement).value;
-        let newQuestion: Question
-        newQuestion = {
-          contenu: questionValue,
-          image: null,
-          quizz: quiz,
+  processQuestions(quiz: Quizz, index = 1) {
+    return new Promise<void>((resolve, reject) => {
+      this.addQuestions(quiz, index).then(() => {
+        if (index < Number((document.getElementById('nbQuestion') as HTMLInputElement).value)) {
+          this.processQuestions(quiz, index + 1).then(() => {
+            resolve();
+          }).catch(err => {
+            reject(err);
+          });
+        } else {
+          resolve();
         }
+      }).catch(err => {
+        reject(err);
+      });
+    });
+  }
+
+  addQuestions(quiz: Quizz, index: number) {
+    return new Promise<void>((resolve, reject) => {
+      const questionValue = (document.getElementById('question' + index) as HTMLInputElement).value;
+      const newQuestion: Question = {
+        contenu: questionValue,
+        image: null,
+        quizz: quiz,
+      };
+
+      this.questionService.add(newQuestion).subscribe(
+        response => {
+          console.log('Question ajoutée avec succès', response);
+          this.currentQuestion = response;
+          this.addReponses(this.currentQuestion, index).then(() => {
+            resolve();
+          });
+        },
+        err => {
+          console.error('Erreur lors de l\'ajout de la question', err);
+          reject(err);
+        }
+      );
+    });
+  }
 
 
-        this.questionService.add(newQuestion).subscribe(
-          res => {
-            this._snackBar.open('Ajouter!!!!!', 'Fermer', { duration: 5000 });
-            console.log('Question ajoutée avec succès', res)
-          },
-          err => {
-            //this._snackBar.open('okokok2', 'Fermer', { duration: 5000 });
-            console.error('Erreur lors de l\'ajout de la question', err)
+  addReponses(question: Question, nbQuestion : number) {
+    return new Promise<void>((resolve, reject) => {
+    if (question) {
+
+      for (let i = 1; i <= 4; i++) {
+        if ((document.getElementById('reponse' + i +"-"+nbQuestion) as HTMLInputElement).value != "") {
+          let reponseValue = (document.getElementById('reponse' + i +"-"+nbQuestion) as HTMLInputElement).value;
+          let newReponse: Reponse
+          newReponse = {
+            contenu: reponseValue,
+            solution: (document.getElementById('correct-answer-' + i + '-' + nbQuestion) as HTMLInputElement).checked,
+            question: question,
           }
-        );
+
+          this.reponseService.add(newReponse).subscribe(
+            res => {
+              console.log('Reponse ajoutée avec succès', res)
+              resolve();
+            },
+            err => {
+              console.error('Erreur lors de l\'ajout de la reponse', err)
+              reject(err);
+            }
+          );
+        }
       }
     }
+    });
   }
+
+  /*async pause(milliseconds: number) {
+    return new Promise(resolve => setTimeout(resolve, milliseconds));
+  }*/
 
   SupprimerQuizz(Quizz: any) {
     this.quizzes.forEach((quizz: Quizz) => {
