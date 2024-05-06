@@ -17,6 +17,8 @@
     border-radius: 20px;
     position: relative;
     margin: 0 80px;
+    align-items: center;
+    text-align: center;
   }
 
   .BoiteUser:hover{
@@ -57,12 +59,14 @@
     width: 100%;
     border-spacing: 2pt;
     border-collapse: separate;
+    margin-top: 30px;
   }
 
   .TabScores td, tr{
     padding: 10px;
     border: 1pt solid #DF4B16;
     border-radius: 10px;
+    text-align: center;
   }
 
   .TabScores:hover{
@@ -84,9 +88,6 @@
     display: flex;
   }
 
-  label{
-    margin-left: 20px;
-  }
 
   button{
     margin-top: 40px;

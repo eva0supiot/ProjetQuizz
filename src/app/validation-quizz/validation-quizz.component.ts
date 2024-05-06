@@ -55,9 +55,14 @@ export class ValidationQuizzComponent implements OnInit {
     this.idUtilisateur = -1;
 
     this.authService.currentUser.subscribe(user => {
-      this.utilisateur = user;
-      this.idUtilisateur = Number(user?.id);
+      if (user) {
+        this.utilisateur = user;
+        this.idUtilisateur = Number(user?.id);
+        console.log(this.utilisateur.id);
+      }
     });
+
+    console.log(this.idUtilisateur);
 
     if (this.receivedData && typeof this.receivedData.score !== 'undefined') {
       this.scoreAjoute = this.receivedData.quizz +":"+ this.receivedData.score;

@@ -26,7 +26,7 @@ export class UtilisateurService {
   }
 
   add(utilisateur: Utilisateur): Observable<Utilisateur> {
-    return this.http.post<Utilisateur>(this.utilisateursUrl, utilisateur)
+    return this.http.post<Utilisateur>(`${this.utilisateursUrl}`, utilisateur)
   }
 
   delete(utilisateur: Utilisateur) {

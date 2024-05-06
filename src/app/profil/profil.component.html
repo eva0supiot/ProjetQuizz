@@ -2,15 +2,14 @@
   <div class="InfoUser" *ngIf="utilisateur">
     <div class ="BoiteUser">
       <!--<img src="{{utilisateurs[0].pdp}}" >-->
-      <img class="PhotoProfil" src="./assets/PhotoProfil2.png" alt="bla">
+      <img class="PhotoProfil" src="./assets/{{utilisateur.pdp}}.png" alt="bla">
       <h1 class="Pseudo">{{utilisateur.pseudo}}</h1>
       <label class="MotDePasse">Mot de passe : {{utilisateur.mdp}}</label><br>
-      <label class="ScoresCumule">Scores cumulés : {{utilisateur.scores}}</label>
+      <label class="ScoresCumule">Score cumulé : {{scoreCumule}}</label>
       <button (click)="logout()">Déconnexion</button>
     </div>
     <div class="TabScores">
       <h1 class="Scores">Tableau des scores</h1>
-      <label>{{utilisateur.scores}}</label>
       <table>
         <thead>
 
@@ -20,13 +19,9 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>bla bla</td>
-            <td>0</td>
-          </tr>
-          <tr>
-            <td>bla bla</td>
-            <td>0</td>
+          <tr *ngFor="let score of scores">
+            <td style="border: #DF4B16" >{{ score.quizz }}</td>
+            <td style="border: #DF4B16">{{ score.score }}</td>
           </tr>
         </tbody>
       </table>

@@ -37,6 +37,7 @@ export class InscriptionComponent {
   }
 
 
+  photo : string ="";
 
   constructor(private _route: ActivatedRoute, private utilisateurService: UtilisateurService, private router: Router, private fb: FormBuilder, private _snackBar: MatSnackBar,private authService: AuthService) {
     this.utilisateurService.findAll().subscribe((data) => this.utilisateurs = data)
@@ -50,6 +51,7 @@ export class InscriptionComponent {
   // cette méthode n'est pas obligatoire c'est pour montrer comment récupérer la valeur d'un radio button
   onRadioButtonChange($event: MatRadioChange) {
     console.log($event.value);
+    this.photo=$event.value;
   }
 
 
@@ -60,6 +62,7 @@ export class InscriptionComponent {
       this._snackBar.open('L\'utilisateur existe déjà', '', { duration: 5000 });
       return;
     } else {
+      this.userForm.value.pdp = this.photo;
       const newUser: Utilisateur = this.userForm.value;
 
       this.utilisateurService.add(newUser).subscribe(
@@ -77,6 +80,14 @@ export class InscriptionComponent {
       );
     }
   }
+
+  verificationID(): void{
+    for(let utilisateur of this.utilisateurs)
+    {
+      //if (this.userForm.value.id)
+    }
+  }
+
 }
 
 

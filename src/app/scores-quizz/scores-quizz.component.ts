@@ -55,7 +55,6 @@ export class ScoresQuizzComponent {
 
   getAllScores(): void {
     if (this.quizz && this.utilisateurs.length > 0) {
-      // Les données sont disponibles, vous pouvez les manipuler ici
       for (let utilisateur of this.utilisateurs) {
         const tableauDeLignes = utilisateur.scores.split('-');
         for (let score of tableauDeLignes) {
