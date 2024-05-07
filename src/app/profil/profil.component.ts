@@ -35,8 +35,6 @@ export class ProfilComponent {
         this.getScores();
       }
     });
-
-
   }
 
   logout() {
@@ -46,7 +44,7 @@ export class ProfilComponent {
   }
 
   getScores(): void {
-
+    this.scores = [];
     const tableauDeLignes = this.utilisateur!.scores.split('-');
 
     console.log(tableauDeLignes!);

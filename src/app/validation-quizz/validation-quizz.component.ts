@@ -73,6 +73,7 @@ export class ValidationQuizzComponent implements OnInit {
     this.utilisateurService.saveScore(this.idUtilisateur!,this.scoreAjoute).subscribe(
       response => {
         console.log('Score mis à jour avec succès :', response);
+        this.authService.refreshCurrentUser();
         // Gérez la réponse ou effectuez d'autres actions nécessaires après la mise à jour du score
       },
       error => {

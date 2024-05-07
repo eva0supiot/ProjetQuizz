@@ -54,6 +54,7 @@ export class ScoresQuizzComponent {
   }
 
   getAllScores(): void {
+    this.scores = [];
     if (this.quizz && this.utilisateurs.length > 0) {
       for (let utilisateur of this.utilisateurs) {
         const tableauDeLignes = utilisateur.scores.split('-');
