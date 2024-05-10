@@ -63,11 +63,12 @@
 
     #questions-container {
       padding: 20px;
-      background-color: #f8f8f8;
       display: flex;
       flex-direction: column;
       width: 950px;
       height: auto;
+      border-right: 2px solid #F7BC49;
+      border-left: 2px solid #F7BC49;
     }
 
     .question-block {

@@ -71,6 +71,7 @@ export class ProfilAdminComponent {
 
     this.quizzForm = this.fb2.group({
       titre: ['', Validators.required],
+      img: [null]
     });
   }
 
