@@ -13,7 +13,16 @@
     color: theme.$common-red;
     font-size: xx-large;
     margin-top : 80px;
+    margin-bottom : 40px;
+  }
+
+  .image {
+    align-content: center;
+    align-items: center;
+    display: flex;
     margin-bottom : 80px;
+    height: auto;
+    max-width: 200px;
   }
 
   .quizz-group {

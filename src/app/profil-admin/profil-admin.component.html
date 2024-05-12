@@ -7,7 +7,7 @@
       <input class="InfoSaisie" id="mdp" name="mdp" formControlName="mdp" required>
     </div>
     <div class="Rb">
-      <mat-radio-group aria-label="Select an option" (change)="onRadioButtonChange($event)" formControlName="imageName">
+      <mat-radio-group aria-label="Select an option" (change)="onRadioButtonChange($event)" formControlName="pdp">
         <mat-radio-button value="PhotoProfil2" class="Rb"><img src="assets/PhotoProfil2.png" height="100px"/></mat-radio-button>
         <mat-radio-button value="PhotoProfil3" class="Rb"><img src="assets/PhotoProfil3.png" height="100px"/></mat-radio-button>
         <mat-radio-button value="PhotoProfil4" class="Rb"><img src="assets/PhotoProfil4.png" height="100px"/></mat-radio-button>
@@ -33,7 +33,7 @@
   </div>
 </form>
 
-<form [formGroup]="quizzForm" (ngSubmit)="onSubmit()" class="form1">
+<form [formGroup]="quizzForm" (ngSubmit)="onSubmit()" class="form2">
   <h1>Ajout Quizz</h1>
   <div>
     <label for="titre">Titre: </label>
@@ -41,12 +41,12 @@
     <label for="nbQuestion">Nombre de question: </label>
     <input class="InfoSaisie" id="nbQuestion" name="nbQuestion" type="number" formControlName="nbQuestion" required>
     <div class="Rb">
-      <mat-radio-group aria-label="Select an option" (change)="onRadioButtonChange($event)" formControlName="pdp">
-        <mat-radio-button value="ImageQuizz1" class="Rb"><img src="assets/divertissements.png" height="100px"/></mat-radio-button>
-        <mat-radio-button value="ImageQuizz2" class="Rb"><img src="assets/histoire_culture.png" height="100px"/></mat-radio-button>
-        <mat-radio-button value="ImageQuizz3" class="Rb"><img src="assets/monde.png" height="100px"/></mat-radio-button>
-        <mat-radio-button value="ImageQuizz4" class="Rb"><img src="assets/nature.png" height="100px"/></mat-radio-button>
-        <mat-radio-button value="ImageQuizz5" class="Rb"><img src="assets/scolaire.png" height="100px"/></mat-radio-button>
+      <mat-radio-group aria-label="Select an option" (change)="onRadioButtonChange($event)" formControlName="image">
+        <mat-radio-button value="divertissements" class="Rb"><img src="assets/divertissements.png" height="100px"/></mat-radio-button>
+        <mat-radio-button value="histoire_culture" class="Rb"><img src="assets/histoire_culture.png" height="100px"/></mat-radio-button>
+        <mat-radio-button value="monde" class="Rb"><img src="assets/monde.png" height="100px"/></mat-radio-button>
+        <mat-radio-button value="nature" class="Rb"><img src="assets/nature.png" height="100px"/></mat-radio-button>
+        <mat-radio-button value="scolaire" class="Rb"><img src="assets/scolaire.png" height="100px"/></mat-radio-button>
       </mat-radio-group>
     </div>
     <button type="button" (click)="generateFields()">Continuer</button>
@@ -55,7 +55,7 @@
 
 </form>
 
-<form class="form1">
+<form class="form2">
   <h1>Supprimer Quizz</h1>
   <div class="SupQuizz">
     @for (quizz of quizzes ; track quizz) {

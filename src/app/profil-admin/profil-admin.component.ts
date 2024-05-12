@@ -71,7 +71,7 @@ export class ProfilAdminComponent {
 
     this.quizzForm = this.fb2.group({
       titre: ['', Validators.required],
-      img: [null]
+      image: [null]
     });
   }
 
@@ -88,7 +88,6 @@ export class ProfilAdminComponent {
       return;
     } else {
       const newUser: Utilisateur = this.userForm.value;
-
       this.utilisateurService.add(newUser).subscribe(
         response => {
           this._snackBar.open('Utilisateur ajouté avec succès', '', { duration: 5000 });
@@ -235,7 +234,6 @@ export class ProfilAdminComponent {
       const questionValue = (document.getElementById('question' + index) as HTMLInputElement).value;
       const newQuestion: Question = {
         contenu: questionValue,
-        image: null,
         quizz: quiz,
       };
 
