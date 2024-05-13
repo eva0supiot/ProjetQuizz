@@ -5,6 +5,7 @@ import { Quizz } from "models/quizz.model"
 import { Question } from "models/question.model"
 import { QuizzService } from "../services/quizz.service"
 import { QuestionService } from "../services/question.service"
+import { AuthService } from "../services/auth.service"
 
 @Component({
   selector: "home",
@@ -19,10 +20,18 @@ export class HomeComponent implements OnInit {
   quizzes: Quizz[] = [];
   questions: Question[] = [];
 
-  constructor(private _route: ActivatedRoute, private quizzService: QuizzService,private questionService: QuestionService, private router: Router) {
+  constructor(private _route: ActivatedRoute, private quizzService: QuizzService,private questionService: QuestionService, private router: Router,private authService: AuthService) {
     this.quizzService.findAll().subscribe((data)=> this.quizzes = data)
     this.questionService.findAll().subscribe((data)=> this.questions = data)
 
+  }
+
+  playQuizz(quizzId: bigint | undefined): void {
+    if (this.authService.isAuthenticated()) {
+      this.router.navigate([`/quizz/${quizzId}`]);
+    } else {
+      this.router.navigate(['/login']);
+    }
   }
   ngOnInit(): void {}
 
